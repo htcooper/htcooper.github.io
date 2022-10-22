@@ -1,3 +1,8 @@
+PATH
+  remote: C:/Users/hollis/OneDrive/Documents/GitHub/forty-jekyll-theme-htc
+  specs:
+    forty_jekyll_theme-htc (1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -235,7 +240,8 @@ GEM
       faraday (>= 0.17.3, < 3)
     simpleidn (0.2.1)
       unf (~> 0.1.4)
-    terminal-table (1.6.0)
+    terminal-table (1.8.0)
+      unicode-display_width (~> 1.1, >= 1.1.1)
     typhoeus (1.4.0)
       ethon (>= 0.9.0)
     tzinfo (2.0.5)
@@ -245,6 +251,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8.2-x64-mingw-ucrt)
+    unicode-display_width (1.8.0)
     wdm (0.1.1)
     webrick (1.7.0)
 
@@ -252,10 +259,10 @@ PLATFORMS
   x64-mingw-ucrt
 
 DEPENDENCIES
+  forty_jekyll_theme-htc!
   github-pages (~> 227)
   http_parser.rb (~> 0.6.0)
   jekyll-feed (~> 0.12)
-  minima (~> 2.5)
   tzinfo (>= 1, < 3)
   tzinfo-data
   wdm (~> 0.1.1)
