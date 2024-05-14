@@ -3,13 +3,8 @@ layout: page
 title: Resume
 
 introduction: |
-    ---
-    ## About
-    
-    Strategic product leader with 8+ years of experience in solving complex customer challenges. Master's in computer science from UPenn, equipped with specialized training and hands-on skills in AI, ready to drive innovation in new product domains.    
+    <a href="assets/resume/Hollis-Cooper-Resume.pdf" class="btn" target="_blank"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="379 72.1 16 16"><path d="M386.8 79.1c-.1.2-.1.4-.2.7-.2.7-.3.9-.4 1.1-.1.2-.1.2-.2.5l0 0c0 .1-.1.2-.2.4.5-.2.8-.3 1.3-.5l.3-.1c.2-.1.4-.1.5-.2.1 0 .1 0 .2-.1-.1-.1-.2-.3-.4-.5C387.4 80.1 387.1 79.7 386.8 79.1zM383.2 84.3c-.1.4-.1.4-.1.4.1 0 .2.1.2 0 .1-.1.2-.2.4-.6.1-.1.1-.2.2-.4 0 0 0-.1.1-.1C383.6 83.9 383.3 84.1 383.2 84.3zM386.5 76.7c.1-.6.1-.7 0-1.2 0-.1 0-.1 0-.1 0 0 0 .1-.1.1-.1.3-.1.6 0 1C386.5 76.6 386.5 76.6 386.5 76.7z"></path><path d="M391.3,72.1h-8.6c-1.1,0-2,0.9-2,2.1V86c0,1.1,0.9,2.1,2,2.1h6.6l4.1-4.1v-9.8C393.4,73,392.4,72.1,391.3,72.1z M389.2,82.1  c-0.2-0.2-0.3-0.3-0.5-0.4c-0.2,0-0.3,0.1-0.5,0.2c-0.1,0.1-0.3,0.1-0.6,0.2l-0.3,0.1c-0.6,0.2-0.9,0.3-1.6,0.6 c-0.2,0.1-0.3,0.1-0.5,0.2c0,0,0,0.1,0,0.1c0,0.1-0.2,0.5-0.6,1.1c-0.1,0.1-0.1,0.3-0.2,0.4c-0.2,0.4-0.3,0.6-0.6,0.8 c-0.2,0.2-0.4,0.2-0.7,0.2c-0.2,0-0.5-0.1-0.7-0.2c-0.5-0.4-0.3-1.1-0.2-1.4c0.2-0.5,0.7-0.8,1.4-1.2c0.3-0.2,0.6-0.3,0.8-0.5 c0.2-0.3,0.4-0.8,0.6-1.2l0,0c0.1-0.3,0.1-0.3,0.2-0.5c0-0.1,0.1-0.4,0.4-1.1c0.2-0.7,0.3-1.1,0.5-1.5c-0.3-0.6-0.5-1-0.6-1.4 c-0.1-0.5-0.1-0.9,0-1.4c0.2-0.7,0.7-0.8,0.8-0.8l0,0c0.2,0,0.7,0.1,0.9,0.8c0.1,0.6,0.1,0.9-0.1,1.7l-0.1,0.3  c0,0.2-0.1,0.5-0.1,0.6c0.1,0.1,0.1,0.2,0.2,0.3c0.4,0.8,0.7,1.2,1.1,1.8c0.2,0.3,0.4,0.5,0.6,0.7c0.1,0,0.2,0,0.2,0  c0.3-0.1,0.5-0.1,0.7-0.1c0.2,0,0.5,0,0.8,0.1c0.8,0.1,1,0.7,1,1c0,0.2,0,0.8-0.8,0.9c-0.2,0.1-0.6,0.1-0.8,0 C389.9,82.6,389.6,82.5,389.2,82.1z M389.7,87.1v-2.1c0-0.3,0.3-0.6,0.6-0.6h2.1L389.7,87.1z"></path><path d="M390.8,81.9c0.1,0,0.1,0,0.1,0c0,0,0-0.1,0-0.1c0,0-0.1-0.1-0.3-0.1c-0.3-0.1-0.5-0.1-0.7-0.1c-0.1,0-0.1,0-0.2,0  c0.3,0.3,0.5,0.4,0.6,0.4C390.4,81.9,390.6,81.9,390.8,81.9z"></path></svg></span>Download Resume</a>{:target="_blank"}
 
-    I have hands-on experience with NLP, CNNs, reinforcement learning, transformers, generative AI, and computer vision. I also have training in the business use of AI, ethical and legal issues relating to AI, and ML project best practices.
-    
     ---
     ## Education
     **University of Pennsylvania**  
@@ -20,7 +15,7 @@ introduction: |
 
     **Claremont Graduate University**  
     **Master of Fine Arts**  
-    * Nominated by department for Joan Mitchell Foundation MFA Grant Program Award.
+    * One of two students nominated by the department for the national Joan Mitchell Foundation MFA Grant Program Award.
 
     **Princeton University**  
     **Bachelor of Arts**  
@@ -59,7 +54,13 @@ introduction: |
     - Managed stakeholder buy-in on a cross-functional team that included 6 members of senior leadership and an external development agency.
 
     **Additional Work Experience**  
-    Positions include: Principal, Hollis Tenley Consulting; Web Design Lead, Amadeus North America; Web Designer, American Film Institute
+    - *Principal, Hollis Tenley Consulting*
+        - As a consultant, I have worked with companies of all sizes for brand development, UX/UI, full-stack web development, interactive design, and print projects. Selected clients include EMC Corporation, the U.S. Holocaust Memorial Museum, and 2SI Surfboards.
+    - Web Design Lead, Amadeus North America; Web Designer, American Film Institute
+        - I have a background in UX/UI and front-end web development. At Amadeus, I worked directly with teams of engineers in a startup environment.
+    - Adjunct Faculty, CSU San Bernardino and Scripps College
+        - These positions honed my skills in successfully communicating technical concepts to non-technical audiences as well as educating diverse audiences in a way that embraces accessibility and bridges different learning styles.  
+  
 
     ---
     ## Certifications
@@ -71,25 +72,29 @@ introduction: |
     ---
     ## Technical Projects
 
-    * **Projects for UPenn Artificial Intelligence**  
-        * Built and trained a neural network on the Fashion MNIST dataset.
-        * Built N-gram language model
-        * Wrote text complexity vector constructor and evaluated various language model accuracies using Hugging Face transformers.
-        * Participated in various AI research projects as annotator and RLHF provider. <br><br>
+    **Projects for UPenn Artificial Intelligence**  
+    * Built and trained a neural network on the Fashion MNIST dataset.
+    * Built N-gram language model.
+    * Wrote text complexity vector constructor and evaluated various language model accuracies using Hugging Face transformers.
+    * Participated in various AI research projects as annotator and RLHF provider.
 
+    **Additional Generative AI Experience**
+    * Alpha tester for OpenAI GPT4-V and Microsoft Designer
 
-    * **Additional Generative AI Experience**
-        * Alpha tester for OpenAI GPT4-V and Microsoft Designer  <br><br>
+    **Dreamify: A Music Recommender**  
+    Final team project for CIS 550 Database & Information Systems
+    - Technology used: AWS RDS database, API integrations, MySQL, React, Node.js, HTML/CSS
+    - Built song-recommendation web app using AWS RDS, API integrations, React/Node. 
+    - Personal contribution: UX, APIs, wrote optimized complex SQL queries for content-based recommendations ("if you like this song, you might also like ...").
 
-    * **Dreamify: A Music Recommender**  
-        Final team project for CIS 550 Database & Information Systems
-        - Technology used: AWS RDS database, API integrations, MySQL, React, Node.js, HTML/CSS
-        - Built song-recommendation web app using AWS RDS, API integrations, React/Node. Team project; personal contribution: UX, APIs, wrote optimized complex SQL queries for content-based recommendations ("if you like this song, you might also like ...").<br><br>
+    **Streamlit Dashboard App**
+    * This was a small project to visualize a CSV of restaurant data as interactive charts using Python and Streamlit. 
+    * [Demo](https://htcooper-rs-dashboard-app-t89tjw.streamlit.app/){:target="_blank"} 
+    * [Github repo](https://github.com/htcooper/rs-dashboard){:target="_blank"}
 
-
-    * **Open Source Contributions**
-        * [Password Purgatory API (Author: Troy Hunt)](https://github.com/troyhunt/password-purgatory-api){:target="_blank"}  
-        The Cloudflare Worker public API for deliberately making password creation hell for spammers
+    **Open Source Contributions**
+    * [Password Purgatory API (Author: Troy Hunt)](https://github.com/troyhunt/password-purgatory-api){:target="_blank"}  
+    The Cloudflare Worker public API for deliberately making password creation hell for spammers! I couldn't not contribute. :)
 
     ---
     ## Skills
@@ -104,7 +109,7 @@ introduction: |
     RDBMS, MongoDB, Neo4J, AWS, Azure
 
     **User Experience**  
-    Design thinking, Prototyping, Information architecture, ADA, QA
+    Design thinking, Prototyping, Information architecture, ADA/accessibility, QA
 
     **Experiments + Optimization**  
     Qualitative + quantitative research, Insight generation, A/B testing
@@ -118,7 +123,11 @@ introduction: |
     **Software**  
     Jira, Confluence, Figma, Adobe CC, Notion
 
+    ---
+    ## Interests + Fun Facts!
 
+    - I am an artist who has shown in museums and galleries around the United States. My work blends the digital with traditional media and takes the form of paintings and site-specific installations. See one of my recent works recently acquired by Ontario International Airport [here](https://vimeo.com/895608031/ea55fb2746?share=copy){:target="_blank"}.  
+    - I've also worked as a volunteer mountain patroller (snowboard) at June Mountain, CA. Previously, I was an AASI-certified snowboarding instructor who specialized in teaching women to snowboard.  
 
-
+    
 ---

@@ -9,16 +9,26 @@ alt_title: " "
 
 # optional intro text below titles, Markdown allowed
 introduction: |
-    Basically Basic is a Jekyll theme meant to be a substitute for the default --- [Minima](https://github.com/jekyll/minima). Conventions and features found in Minima are fully supported by **Basically Basic**.
+    ## About Hollis
+    
+    Strategic product leader with 8+ years of experience in solving complex customer challenges. Master's in computer science from UPenn, equipped with specialized training and hands-on skills in AI, ready to drive innovation in new product domains.    
+
+    I have hands-on experience with NLP, CNNs, reinforcement learning, transformers, generative AI, and computer vision. I also have training in the business use of AI, ethical and legal issues relating to AI, and ML project best practices.
 
 # optional call to action links
 actions:
-  - label: "Learn More"
+  - label: "Resume"
+    icon: pdf  # references name of svg icon, see full list below
+    url: resume.html
+  - label: "LinkedIn"
+    icon: linkedin  # references name of svg icon, see full list below
+    url: "https://www.linkedin.com/in/hollis/"
+  - label: "Github"
     icon: github  # references name of svg icon, see full list below
-    url: "http://url-goes-here.com"
-  - label: "Download"
-    icon: download  # references name of svg icon, see full list below
-    url: "http://url-goes-here.com"
+    url: "https://github.com/htcooper"
+  - label: "Email"
+    icon: email  # references name of svg icon, see full list below
+    url: "mailto:hollis.cooper@gmail.com"
 
 image:  /assets/images/banner.jpg
 
@@ -28,5 +38,6 @@ author:
   
 
 comments: false  # disable comments on this post
+paginate: false
 
 ---

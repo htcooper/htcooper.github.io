@@ -50,7 +50,8 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
 
-
+feed:
+  path: atom.xml
 
 paginate: 10
 paginate_path: /page:num/

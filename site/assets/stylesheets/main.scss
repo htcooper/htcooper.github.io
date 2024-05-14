@@ -1,0 +1,71 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+// Theme skin
+@import "basically-basic/themes/{{ site.data.theme.skin | default: 'default' }}";
+
+@import "basically-basic";
+
+
+.btn {
+    background-color: rgb(185, 0, 185);
+}
+
+.btn:hover {
+    background-color: rgb(112, 0, 112);
+}
+
+.btn:active {
+    background-color: rgb(112, 0, 112);
+}
+
+.btn:focus {
+    background-color: rgb(112, 0, 112);
+}
+
+.site-title {
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-weight:400;
+}
+
+.intro-more {
+
+    h2 {
+        margin-bottom:2rem;
+    }
+
+    ul {
+        margin-bottom:1.7rem;
+    }
+
+    p {
+        margin-bottom:.7rem;
+    }
+
+    hr {
+        margin-top: 2rem;
+    }
+}
+
+.intro-more {
+    margin-bottom: 2rem;
+}
+
+.sidebar {
+    .inner {
+        background-color: rgb(255, 177, 131);
+        padding: 30px;
+    }
+
+    li {
+        a:hover {
+            color: #fff;
+
+        }
+    }
+}
