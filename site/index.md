@@ -2,10 +2,10 @@
 layout: home
 
 # optional alternate title to replace page.title at the top of the page
-alt_title: "Hello"
+alt_title: " "
 
 # optional sub-title below the page title
-sub_title: "The name says it all"
+# sub_title: "The name says it all"
 
 # optional intro text below titles, Markdown allowed
 introduction: |
