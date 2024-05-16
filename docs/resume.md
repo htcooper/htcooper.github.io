@@ -41,7 +41,7 @@ introduction: |
     * Led digital product and marketing teams and oversaw relationships with 3 external agencies.
     * Improved website SEO, accessibility, and QA scores to meet or exceed education industry benchmarks, growing web traffic 30% YoY for FY 20/21
     * Improved applicant numbers for teacher education programs by 157% YoY 20/21 through user journey research, new persona development, and data-driven marketing content development.
-    * Led MyCGU intranet migration from 3rd party platform and redesigned/ redeployed it according to user and security needs, resulting in significant cost savings and increased user uptake. 
+    * Led intranet migration from 3rd party platform and redesigned/ redeployed it according to user and security needs, resulting in significant cost savings and increased user uptake. 
     * Implemented dynamic reporting framework using Google Data Studio, reducing staff report generation time by 80%.
     * Created brand awareness campaign that brought 260K new users to the CGU website.
     * Won a Silver CASE District VII award as content lead for the CGU Viewbook.
