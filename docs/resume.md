@@ -65,6 +65,10 @@ introduction: |
     ---
     ## Certifications
 
+    **Microsoft Certified: Azure AI Fundamentals**, *Microsoft*  
+    2024
+    [View](https://learn.microsoft.com/en-us/users/holliscooper-9840/credentials/46f8ffe8550ef3f5){:target="_blank"}
+
     **AI Product Management Specialization**, *Duke University*  
     2022  
     [View](https://www.coursera.org/account/accomplishments/specialization/certificate/D2QHNRSBAS7Z){:target="_blank"}
