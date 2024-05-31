@@ -11,7 +11,7 @@ alt_title: " "
 introduction: |
     ## About Hollis
     
-    Strategic product leader with 8+ years of experience in solving complex customer challenges. Master's in computer science from UPenn, equipped with specialized training and hands-on skills in AI, ready to drive innovation in new product domains.    
+    Data-driven product leader with 8+ years of experience in solving complex customer challenges. Master's in computer science from UPenn, equipped with specialized training and hands-on skills in AI, ready to drive innovation in new product domains.    
 
     I have hands-on experience with NLP, CNNs, reinforcement learning, transformers, generative AI, and computer vision. I also have training in the business use of AI, ethical and legal issues relating to AI, and ML project best practices.
 
