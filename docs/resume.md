@@ -27,22 +27,23 @@ introduction: |
     **Head of Product**, *Cohart*  
     May 2023 - Feb 2024  
     San Francisco Bay Area / Remote (Globally distributed team)  
-    * First head of product for seed-stage B2B2C and B2C start-up with social, e-comm, and SaaS features.
-    * Collaborated closely with co-founders on vision and product strategy.
-    * Oversaw end-to-end product execution for 9 major feature releases across mobile app/web platform, increasing MAUs by over 400% and active user accounts by 100%.
-    * Oversaw launch of Cohart's first Android app, doubling WAUs in the first month after its release.
-    * Partnered closely with the head of engineering and worked with dev, QA, design, and UX teams to shorten sprint timelines by 15%.
-    * Built streamlined platform analytics tracking framework for improved prioritization and OKR impact.
+    * First head of product for seed-stage B2B2C and B2C creator-economy start-up with social, e-comm/marketplace, and SaaS features.
+    * Reported to COO and led 3-person design/UX team.
+    * Oversaw end-to-end product execution for 9 major feature releases on mobile/web apps, increasing MAUs by over 400% and active users by 100%.
+    * Drove launch of first Android app, doubling WAUs in first month post-release.
+    * Built first unified analytics reporting framework through user-journey event identification and documentation, providing SQL queries to data consultant.
     * Worked with consultants for Cohart's first AI/ML integration to establish recommendation behaviors for search and advisory flows.
+    * Stabilized sprint timelines, shortening them by 15% by partnering closely with the head of engineering and working with dev, QA, design, and UX teams.
+
 
     **Digital Strategy Director**, *Claremont Graduate University*  
     Jul 2017 - Jun 2022  
     Claremont, CA
-    * Led digital product and marketing teams and oversaw relationships with 3 external agencies.
-    * Improved website SEO, accessibility, and QA scores to meet or exceed education industry benchmarks, growing web traffic 30% YoY for FY 20/21
+    * Led digital product and marketing teams and oversaw relationships with 3 external agency partners.
+    * Improved website SEO, accessibility, and QA scores to meet or exceed education industry benchmarks, growing inbound traffic 30% YoY for FY 20/21
     * Improved applicant numbers for teacher education programs by 157% YoY 20/21 through user journey research, new persona development, and data-driven marketing content development.
-    * Led intranet migration from 3rd party platform and redesigned/ redeployed it according to user and security needs, resulting in significant cost savings and increased user uptake. 
-    * Implemented dynamic reporting framework using Google Data Studio, reducing staff report generation time by 80%.
+    * Led intranet migration from 3rd party platform and redesigned it according to user/security needs, making it the 2nd most visited site on the CGU domain. 
+    * Reduced staff report generation time by 80% by implementing CGU's first dynamic reporting framework using Google Data Studio.
     * Created brand awareness campaign that brought 260K new users to the CGU website.
     * Won a Silver CASE District VII award as content lead for the CGU Viewbook.
 
@@ -50,16 +51,16 @@ introduction: |
     Sep 2015 - Jun 2017  
     Claremont, CA
     - Won a Bronze CASE District VII Award and increased admissions leads by 20% within the first year of executing the largest digital transformation project in the university's history.
-    - Improved CGU public website uptime to 99.99% after facilitating website migration from a legacy platform on local servers to a WordPress-based platform in the cloud.
+    * Improved bounce-rate/stickiness on academic program pages by 20% and increased time-on-page over industry standards through market- and user-research-fueled content/UX strategy.
     - Managed stakeholder buy-in on a cross-functional team that included 6 members of senior leadership and an external development agency.
 
     **Additional Work Experience**  
     - *Principal, Hollis Tenley Consulting*
-        - As a consultant, I have worked with companies of all sizes for brand development, UX/UI, full-stack web development, interactive design, and print projects. Selected clients include EMC Corporation, the U.S. Holocaust Memorial Museum, and 2SI Surfboards.
-    - Web Design Lead, Amadeus North America; Web Designer, American Film Institute
-        - I have a background in UX/UI and front-end web development. At Amadeus, I worked directly with teams of engineers in a startup environment.
+        - Worked with companies of all sizes for brand development, UX/UI, full-stack web development, and interactive design. Selected clients include EMC Corporation, the U.S. Holocaust Memorial Museum, DeBusk USA, RSM Equico.
+    - Web Design Lead, Amadeus North America
+        - Worked directly with teams of engineers, providing UX, UI, and front-end development in rapid release cycles on a digital B2B product for travel agents.
     - Adjunct Faculty, CSU San Bernardino and Scripps College
-        - These positions honed my skills in successfully communicating technical concepts to non-technical audiences as well as educating diverse audiences in a way that embraces accessibility and bridges different learning styles.  
+        - These positions honed my skills in successfully communicating technical concepts to non-technical audiences in a way that embraces accessibility and bridges different learning styles.  
   
 
     ---
@@ -92,7 +93,7 @@ introduction: |
     - Personal contribution: UX, front-end web dev, artist/album/song pages with AudioDB and Spotify API integrations, optimized complex SQL queries for content-based recommendations ("if you like this song, you might also like ...").
 
     **Streamlit Dashboard App**
-    * This was a small project to visualize a CSV of restaurant data as interactive charts using Python and Streamlit. 
+    * Python and Streamlit data visualization dashboard that pulls insights from a CSV. 
     * [Demo](https://htcooper-rs-dashboard-app-t89tjw.streamlit.app/){:target="_blank"} 
     * [Github repo](https://github.com/htcooper/rs-dashboard){:target="_blank"}
 
@@ -104,13 +105,13 @@ introduction: |
     ## Skills
 
     **Machine Learning + AI**  
-    NLP, Gen AI, Reinforcement learning, CNNs, Computer vision, Transformers
+    NLP, Generative AI, Reinforcement learning, CNNs, Computer vision, Transformers, Responsible AI principles
 
     **Languages + Tools**  
-    Python, Java, HTML/CSS, Javascript, SQL, Git, Streamlit, APIs
+    Python, Java, HTML/CSS, Javascript, SQL, Git, Streamlit, API integration
 
     **Databases**  
-    RDBMS, MongoDB, Neo4J, AWS, Azure
+    RDBMS, MongoDB, Postgres, AWS, Azure, Relational data modeling
 
     **User Experience**  
     Design thinking, Prototyping, Information architecture, ADA/accessibility, QA
@@ -125,7 +126,7 @@ introduction: |
     Content strategy, Content writing
 
     **Software**  
-    Jira, Confluence, Figma, Adobe CC, Notion
+    JIRA, Confluence, Figma, Adobe CC, Notion
 
     ---
     ## Interests + Fun Facts!
