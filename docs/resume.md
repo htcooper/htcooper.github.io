@@ -57,9 +57,9 @@ introduction: |
     **Additional Work Experience**  
     - *Principal, Hollis Tenley Consulting*
         - Worked with companies of all sizes for brand development, UX/UI, full-stack web development, and interactive design. Selected clients include EMC Corporation, the U.S. Holocaust Memorial Museum, DeBusk USA, RSM Equico.
-    - Web Design Lead, Amadeus North America
+    - *Web Design Lead, Amadeus North America*
         - Worked directly with teams of engineers, providing UX, UI, and front-end development in rapid release cycles on a digital B2B product for travel agents.
-    - Adjunct Faculty, CSU San Bernardino and Scripps College
+    - *Adjunct Faculty, CSU San Bernardino and Scripps College*
         - These positions honed my skills in successfully communicating technical concepts to non-technical audiences in a way that embraces accessibility and bridges different learning styles.  
         - I also developed and continuously improved key criteria and evaluation rubrics for objectively and fairly assessing student outputs/performance.
   
