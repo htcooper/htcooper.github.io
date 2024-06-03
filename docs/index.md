@@ -15,6 +15,8 @@ introduction: |
 
     I have hands-on experience with NLP, CNNs, reinforcement learning, transformers, generative AI, and computer vision. I also have training in the business use of AI, ethical and legal issues relating to AI, and ML project best practices.
 
+    Tech skills include Python (PyTorch, TensorFlow, Scikit-learn, OpenCV, Pandas, Hugging Face), Java, SQL, RDBMS design, Relational data modeling, Git, Streamlit, HTML/CSS/jQuery, Linux/Ubuntu CLI, Azure AI/ML, AWS RDS. Familiar with MongoDB, Neo4J, React, Node.js, Ruby, and Unity.
+
 # optional call to action links
 actions:
   - label: "Resume"
