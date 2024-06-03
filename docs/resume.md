@@ -61,6 +61,7 @@ introduction: |
         - Worked directly with teams of engineers, providing UX, UI, and front-end development in rapid release cycles on a digital B2B product for travel agents.
     - Adjunct Faculty, CSU San Bernardino and Scripps College
         - These positions honed my skills in successfully communicating technical concepts to non-technical audiences in a way that embraces accessibility and bridges different learning styles.  
+        - I also developed and continuously improved key criteria and evaluation rubrics for objectively and fairly assessing student outputs/performance.
   
 
     ---
