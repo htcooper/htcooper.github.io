@@ -90,7 +90,6 @@ introduction: |
 
     **Dreamify: A Music Recommender**  
     Final team project for CIS 550 Database & Information Systems
-    - Technology used: AWS RDS database, API integrations, MySQL, React, Node.js, HTML/CSS
     - Built song-recommendation web app using AWS RDS, API integrations, React/Node. 
     - Personal contribution: UX, front-end web dev, artist/album/song pages with AudioDB and Spotify API integrations, optimized complex SQL queries for content-based recommendations ("if you like this song, you might also like ...").
 
