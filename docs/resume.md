@@ -89,6 +89,7 @@ introduction: |
     * Alpha tester for OpenAI GPT4-V and Microsoft Designer
     * Custom GPTs: I've made a few fun custom GPTs. Try them out here:
         * [Tiki Mixmaster](https://chatgpt.com/g/g-t5VLu7iOo-tiki-mixmaster){:target="_blank"} - your tiki bartending companion
+        * [Podcast Summarizer](https://chatgpt.com/g/g-a1etiLlnY-podcast-summarizer){:target="_blank"} - helps you catch up on all those podcast episodes you've been meaning to listen to
 
     **Dreamify: A Music Recommender**  
     Final team project for CIS 550 Database & Information Systems
