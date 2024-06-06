@@ -66,7 +66,7 @@ introduction: |
   
 
     ---
-    ## Certifications
+    ## Certifications + Credentials
 
     **Microsoft Certified: Azure AI Fundamentals**, *Microsoft*  
     2024  
