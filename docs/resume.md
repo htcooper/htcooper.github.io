@@ -27,12 +27,13 @@ introduction: |
     **Head of Product**, *Cohart*  
     May 2023 - Feb 2024  
     San Francisco Bay Area / Remote (Globally distributed team)  
-    * First head of product for seed-stage B2B2C and B2C creator-economy start-up with social, e-comm/marketplace, and SaaS features.
+    * First head of product for seed-stage B2B and B2C creator-economy start-up with social, e-comm/marketplace, and SaaS features.
     * Reported to COO and led 3-person design/UX team.
     * Oversaw end-to-end product execution for 9 major feature releases on mobile/web apps, increasing MAUs by over 400% and active users by 100%.
     * Drove launch of first Android app, doubling WAUs in first month post-release.
     * Built first unified analytics reporting framework through user-journey event identification and documentation, providing SQL queries to data consultant.
     * Worked with consultants for Cohart's first AI/ML integration to establish recommendation behaviors for search and advisory flows.
+    * Established first feature documentation process aligning business outcomes, development goals, and success metrics.
     * Stabilized sprint timelines, shortening them by 15% by partnering closely with the head of engineering and working with dev, QA, design, and UX teams.
 
 
