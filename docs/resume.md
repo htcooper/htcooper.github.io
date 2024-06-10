@@ -109,13 +109,13 @@ introduction: |
     ## Skills
 
     **Machine Learning + AI**  
-    NLP, Generative AI, Reinforcement learning, CNNs, Computer vision, Transformers, Responsible AI principles
+    NLP, Generative AI, Reinforcement learning, CNNs, Computer vision, Transformers, Embeddings, Deep learning, Responsible AI principles
 
     **Languages + Tools**  
     Python, Java, HTML/CSS, Javascript, SQL, Git, Streamlit, API integration
 
     **Databases**  
-    RDBMS, MongoDB, Postgres, AWS, Azure, Relational data modeling
+    RDBMS, MongoDB, Neo4j, Postgres, AWS, Azure, Relational data modeling, Knowledge graphs
 
     **User Experience**  
     Design thinking, Prototyping, Information architecture, ADA/accessibility, QA
