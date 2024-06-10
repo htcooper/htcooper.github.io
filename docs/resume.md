@@ -82,7 +82,7 @@ introduction: |
     **Projects for UPenn Artificial Intelligence**  
     * Built and trained a neural network on the Fashion MNIST dataset.
     * Built N-gram language model.
-    * Wrote text complexity vector constructor and evaluated various language model accuracies using Hugging Face transformers.
+    * Performed text vectorization using transformers and evaluated language model accuracies.
     * Participated in various AI research projects as annotator and RLHF provider.
 
     **Additional Generative AI Experience**
