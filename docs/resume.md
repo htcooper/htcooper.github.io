@@ -35,6 +35,7 @@ introduction: |
     * Worked with consultants for Cohart's first AI/ML integration to establish recommendation behaviors for search and advisory flows.
     * Established first feature documentation process aligning business outcomes, development goals, and success metrics.
     * Stabilized sprint timelines, shortening them by 15% by partnering closely with the head of engineering and working with dev, QA, design, and UX teams.
+    * Developed an Intercom bot that provided instant FAQ answers, reduced overall human response times by 83%, and let the team focus on high-touch sales.
 
 
     **Digital Strategy Director**, *Claremont Graduate University*  
