@@ -38,8 +38,6 @@ introduction: |
     - The user should be able to see and interact with the display.
    
     ---
-    # MVP 
-
     ## MVP acceptance criteria:
     - MJAI can see the hand of the user at any point during the game
     - MJAI can track other players through audio cues.
@@ -61,14 +59,13 @@ introduction: |
     - Interface will use a display attached to the Raspberry Pi. 
 
     ---
-    # V2 (Future)
-    ## Notes
+    ## V2 notes
     - Transform the MVP into a mobile app.
     - Allow users to upload the MJ card they want to use.
     - Vision model will be trained off of a larger varied dataset of MJ tiles.  
     
     --- 
-    # Architecture
+    ## Architecture
     
     - Image Processing Pipeline:
         - Camera captures images.
@@ -90,14 +87,14 @@ introduction: |
         - Provides real-time advice to the user based on processed data.
 
     ---
-    # Workflow
+    ## Workflow
     - Capture: Camera and microphone capture real-time data.
     - Process: Images and audio are processed for object detection and speech-to-text conversion.
     - Analyze: Processed data is analyzed for intent recognition and context understanding.
     - Advise: Real-time advice is generated and displayed to the user.
 
     ---
-    # Considerations
+    ## Considerations
     - Latency: Ensure low-latency processing for real-time interaction.
     - Security: Implement robust security measures to protect data and user privacy.
     - Accuracy: 
