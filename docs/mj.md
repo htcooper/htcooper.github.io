@@ -99,3 +99,6 @@ introduction: |
     - Accuracy: 
         - Use high-accuracy models for reliable object detection and intent recognition.
         - Use appropriate GPT reasoning strategy to minimize hallucinations.
+
+
+---
