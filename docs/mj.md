@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Mahjongg AI
+title: Mahjongg AI (MJAI)
 
 introduction: |
   
-    ## Mahjongg Strategy AI Assistant (MJAI)
+     
     This is a side project that I've been working on for a little while. I'm finishing it up as part of buildspace nights & weekends season 5. I'll be updating this page as I work through it - **everything below is subject to change**.  
 
     ---
