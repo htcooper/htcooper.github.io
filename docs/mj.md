@@ -4,7 +4,7 @@ title: Mahjongg AI (MJAI)
 
 introduction: |
   
-    This is a side project that I've been working on for a little while. I'm finishing it up as part of buildspace nights & weekends season 5. I'll be updating this page as I work through it - **everything below is subject to change**.  
+    This is a side project that I've been working on for a little while. I'm finishing it up as part of [buildspace nights & weekends season 5](https://buildspace.so/){:target="_blank"}. I'll be updating this page as I work through it - **everything below is subject to change**.  
 
     ---
     ## Background
