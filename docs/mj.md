@@ -25,6 +25,11 @@ introduction: |
     - Suggest strategies to play defensively (no pants on the ground)
 
     ---
+    ## Target User Persona
+    - New Mahjongg players who are just learning
+    - Intermediate Mahjongg players who want to refine their strategy  
+
+    ---
     ## Functional requirements
     - Needs to see/know the player's current hand
     - Needs to know what tiles have been discarded
