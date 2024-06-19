@@ -30,22 +30,23 @@ introduction: |
     - Needs to know what tiles have been discarded
     - Needs to know what pongs/kongs/chows have been exposed by other players
     - Needs to know whose turn it is
-    - Needs to know the overall status/progress of the game (approximate number of hands remaining)
+    - Needs to know the overall status/progress of the game (beginning / middle / end of the game)
     - Needs to know and follow the current Mahjongg hands/card for this year. 
     - Needs American Mahjongg strategy notes.
     - Needs to know American Mahjongg rules (ex. if the player picks up a discard, it should no longer advise any concealed hands, a joker cannot be used to complete a pair or as a single, etc.)
     - Needs to be reasonably portable and able to sit next to the player using it without interfering with the game.
-    - The user should be able to see and interact with the display.
    
     ---
     ## MVP acceptance criteria:
-    - MJAI can see the hand of the user at any point during the game
-    - MJAI can track other players through audio cues.
-    - MJAI asks for clarification if needed.
-    - MJAI provides strategy when asked.
-    - MJAI does not hallucinate hands or strategy.
-    - MJAI bases its strategy only off of the specific card that the user has indicated.
-    - MJAI can adjust strategy based on the existing game state (current tiles in hand, tiles played by all players, number of turns left to play in the game)
+    - MJAI should be able to see the hand of the user at any point during the game
+    - MJAI should be able to correctly track other players through audio cues.
+    - MJAI should ask for clarification if needed.
+    - MJAI should provides strategy when asked.
+    - MJAI should not hallucinate hands or strategy.
+    - MJAI should base its strategy only off of the specific card that the user has indicated.
+    - MJAI should adjust strategy based on the existing game state (current tiles in hand, tiles played by all players, number of turns left to play in the game)
+    - The player should be able to see and interact with the display without disrupting the game.
+
 
     ## MVP notes
     - The card being used for the game can be hard-coded in. 
