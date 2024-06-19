@@ -70,7 +70,7 @@ introduction: |
     
     - Image Processing Pipeline:
         - Camera captures images.
-        - Images are sent to the edge device or cloud server.
+        - Images are sent to the edge device.
         - Object detection model processes images and identifies objects.
         - Results are sent to the backend via APIs.  
     - Voice Processing Pipeline:
