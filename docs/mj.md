@@ -107,7 +107,7 @@ introduction: |
         - Use high-accuracy models for reliable object detection and intent recognition.
         - Use appropriate GPT reasoning strategy to minimize hallucinations.
 
-    --
+    ---
     ## Resources
     - Basic GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
 
