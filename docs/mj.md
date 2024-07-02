@@ -33,7 +33,7 @@ introduction: |
     ## Functional requirements
     - Needs to see/know the player's current hand
     - Needs to know what tiles have been discarded
-    - Needs to know what pongs/kongs/chows have been exposed by other players
+    - Needs to know what pongs/kongs have been exposed by other players
     - Needs to know whose turn it is
     - Needs to know the overall status/progress of the game (beginning / middle / end of the game)
     - Needs to know and follow the current Mahjongg hands/card for this year. 
@@ -57,7 +57,7 @@ introduction: |
     - The card being used for the game can be hard-coded in. 
     - The vision model will be trained on the specific tile set that I use. 
     - The trained vision and NLU models will be compact enough to run on an edge device.
-    - MJAI will track the game state through audio cues (players announce which tiles they are discarding, which ), and will ask for clarification if it doesn't understand.
+    - MJAI will track the game state through audio cues (players announce which tiles they are discarding and which they are exposing), and will ask for clarification if it doesn't understand.
 
     ## MVP hardware
     - MJAI will run off of a Raspberry Pi.
@@ -110,6 +110,7 @@ introduction: |
     ---
     ## Resources
     - Basic GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
+    - Object Detection app: [View Github](https://github.com/htcooper/mahjongg-ai-tutor){:target="_blank"}
 
 
 ---
