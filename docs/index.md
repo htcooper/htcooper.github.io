@@ -11,11 +11,11 @@ alt_title: " "
 introduction: |
     ## About Hollis
     
-    Data-driven product leader with 8+ years of experience in solving complex customer challenges. Master's in computer science from UPenn, equipped with specialized training and hands-on skills in AI, ready to drive innovation in new product domains.    
+    Experienced, data-driven product leader with a track record of rapid end-to-end product delivery with cross-functional teams. Master’s degree in computer science from UPenn, specializing in machine learning and AI. Passionate about data and AI, with demonstrated bias for action and startup experience. 
 
-    I have hands-on experience with NLP, CNNs, reinforcement learning, transformers, generative AI, and computer vision. I also have training in the business use of AI, ethical and legal issues relating to AI, and ML project best practices.
+    I have hands-on experience with NLP, CNNs, reinforcement learning, transformers, generative AI, and computer vision. I also have training in the business use of AI, ethical and legal issues relating to AI, and ML project best practices. I am Microsoft Certified in Azure AI Fundamentals (AI-900).
 
-    Tech skills include Python (PyTorch, TensorFlow, Scikit-learn, OpenCV, Pandas, Hugging Face), Java, SQL, RDBMS design, Relational data modeling, Git, Streamlit, HTML/CSS/jQuery, Linux/Ubuntu CLI, Azure AI/ML, AWS RDS. Familiar with MongoDB, Neo4J, React, Node.js, Ruby, and Unity.
+    Tech skills include Python (PyTorch, TensorFlow, Scikit-learn, OpenCV, Pandas, Hugging Face), SQL, RDBMS design, Relational data modeling, Git, Streamlit, HTML/CSS/jQuery, Linux/Ubuntu CLI, Azure AI/ML, AWS RDS, Java. Familiar with MongoDB, Neo4J, React, Node.js, Ruby, and Unity.
 
 # optional call to action links
 actions:
