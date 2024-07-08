@@ -6,6 +6,8 @@ introduction: |
   
     This is a side project that I've been working on for a little while. I'm finishing it up as part of [buildspace nights & weekends season 5](https://buildspace.so/){:target="_blank"}. I'll be updating this page as I work through it - **everything below is subject to change**.  
 
+    Follow along with me on Insta! [Mahjongg AI Instagram](https://www.instagram.com/mahjongg_ai/){:target="_blank"}
+
     ---
     ## Background
     Mahjongg is a game of strategy and luck that I enjoy playing. But, I'm slow - I spend a lot of time reading the card, and a lot of time watching what others are doing. There are strategic decisions that have to be made each turn, so I wanted to create something to help me get faster at knowing roughly what I should do next. Is this cheating? Perhaps, although the luck portion of the game means that you can improve your chances of winning, but not guarantee them.  
