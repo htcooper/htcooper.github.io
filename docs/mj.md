@@ -102,6 +102,9 @@ introduction: |
 
     ---
     ## Agentic Workflow (MVP)
+
+    ![Agentic Workflow](/assets/images/MJAI_Workflow.png "Agentic Workflow")
+
     - User starts the game workflow with the AI Agent (MJAI)
 
     - Charleston (Charleston can be 3 or 6 turns with an optional final exchange):
@@ -151,12 +154,8 @@ introduction: |
     ---
     ## Resources
     - Basic Custom GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
-    - Object Detection app: [View Github](https://github.com/htcooper/mahjongg-ai-tutor){:target="_blank"}
+    - RT Object Detection app: [View Github](https://github.com/htcooper/mahjongg-ai-tutor){:target="_blank"}
 
-    ---
-    ## Agentic Workflow
-
-    ![Agentic Workflow](/assets/images/MJAI_Workflow.png "Agentic Workflow")
 
 
 ---
