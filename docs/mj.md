@@ -25,9 +25,10 @@ introduction: |
     - Suggest strategies to play defensively (no pants on the ground)
 
     ---
-    ## Target User Persona
+    ## Target User Personas
     - New Mahjongg players who are just learning
     - Intermediate Mahjongg players who want to refine their strategy  
+    - Anti-personas: advanced mahjongg players, players in a competition environment
 
     ---
     ## Functional requirements
@@ -52,12 +53,12 @@ introduction: |
     - MJAI should adjust strategy based on the existing game state (current tiles in hand, tiles played by all players, number of turns left to play in the game)
     - The player should be able to see and interact with the display without disrupting the game.
 
-
     ## MVP notes
     - The card being used for the game can be hard-coded in. 
     - The vision model will be trained on the specific tile set that I use. 
     - The trained vision and NLU models will be compact enough to run on an edge device.
     - MJAI will track the game state through audio cues (players announce which tiles they are discarding and which they are exposing), and will ask for clarification if it doesn't understand.
+    - MJAI will only understand English audio cues.
 
     ## MVP hardware
     - MJAI will run off of a Raspberry Pi.
@@ -93,24 +94,69 @@ introduction: |
         - Provides real-time advice to the user based on processed data.
 
     ---
-    ## Workflow
+    ## Basic Workflow
     - Capture: Camera and microphone capture real-time data.
     - Process: Images and audio are processed for object detection and speech-to-text conversion.
     - Analyze: Processed data is analyzed for intent recognition and context understanding.
     - Advise: Real-time advice is generated and displayed to the user.
 
     ---
-    ## Considerations
-    - Latency: Ensure low-latency processing for real-time interaction.
-    - Security: Implement robust security measures to protect data and user privacy.
+    ## Agentic Workflow (MVP)
+    - User starts the game workflow with the AI Agent (MJAI)
+
+    - Charleston (Charleston can be 3 or 6 turns with an optional final exchange):
+        - MJAI views current user's hand + remembers that information
+        - When it is the user's turn, prompt MJAI for advice:
+            - MJAI views current hand (image processing pipeline)
+            - MJAI gives advice on proceeding
+            - repeat for each stage of the Charleston
+            - note: there are no audio cues at this stage
+
+    - Transition to main game:
+        - Voice prompt or keyboard input to signal the start of the actual game (voice processing pipeline)
+    
+    - Main game:
+        - MJAI tracks vocal cues that indicate what tiles other users are discarding or exposing. (voice processing pipeline)
+            - game state recorded to txt file
+        - Voice trigger or keyboard input signals the user's turn and prompts MJAI for strategy advice.  (voice processing pipeline)
+            - MJAI views current hand (image processing pipeline)
+            - MJAI gives advice on proceeding
+            - MJAI will reference all knowledge gathered to date when providing advice.
+
+    - End of game
+        - Player announces they have won  (voice processing pipeline).
+        - MJAI prompts user if they won/lost.
+        - User indicates whether they won or lost.
+        - MJAI provides final advice for improvement next time.
+
+    ---
+    ## Risks + Considerations
+    - Speed: 
+        - MJAI needs to provide advice in a timely manner as to not interfere with gameplay
+            - ensure low-latency processing for real-time interaction
+            - keep models small and edge-device compatible
     - Accuracy: 
-        - Use high-accuracy models for reliable object detection and intent recognition.
-        - Use appropriate GPT reasoning strategy to minimize hallucinations.
+        - MJAI may hallucinate valid hands: 
+            - use appropriate GPT instructions/reasoning strategy to minimize hallucinations
+            - lean on RAG to reinforce correct card information
+        - MJAI may mis-identify tiles:
+            - use high-accuracy models for reliable object detection and intent recognition
+            - consider keeping transparent recording of audio/visual cues for user
+            - consider manual confirmation/ability to correct by user
+        - MJAI may forget which tiles have been played:
+            - ensure agent memory to track all tiles 'seen' by the AI ('seen' via object detection model and 'heard' via speech-to-text model). 
+            - store tile history in a text file and use RAG (+ describe text file data in GPT instructions for better retrieval)
+    - Security: Implement robust security measures to protect data and user privacy
 
     ---
     ## Resources
-    - Basic GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
+    - Basic Custom GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
     - Object Detection app: [View Github](https://github.com/htcooper/mahjongg-ai-tutor){:target="_blank"}
+
+    ---
+    ## Agentic Workflow
+
+    ![Agentic Workflow](/assets/images/MJAI_Workflow.png "Agentic Workflow")
 
 
 ---
