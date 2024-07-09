@@ -93,10 +93,10 @@ introduction: |
         * [Tiki Mixmaster](https://chatgpt.com/g/g-t5VLu7iOo-tiki-mixmaster){:target="_blank"} - your tiki bartending companion
         * [Podcast Summarizer](https://chatgpt.com/g/g-a1etiLlnY-podcast-summarizer){:target="_blank"} - helps you catch up on all those podcast episodes you've been meaning to listen to
 
-    **UrbanWild - A Proposal for ML-enabled urban wildlife research and monitoring**  
+    **UrbanWild - A Proposal for ML-enabled urban wildlife research and monitoring app**  
     This was a (fictional) product proposal that I put together. It's not real, but I wish it were!
-    * [View PRD](assets/pdfs/PRD-UrbanWild.pdf){:target="_blank"}  
-    * [View Pitch Deck](assets/pdfs/UrbanWild-PitchDeck.pdf){:target="_blank"}   
+    * [View UrbanWild PRD](assets/pdfs/PRD-UrbanWild.pdf){:target="_blank"}  
+    * [View UrbanWild Pitch Deck](assets/pdfs/UrbanWild-PitchDeck.pdf){:target="_blank"}   
 
     **Streamlit Dashboard App**
     * Python and Streamlit data visualization dashboard that pulls insights from a CSV. 
