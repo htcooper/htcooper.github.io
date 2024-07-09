@@ -78,7 +78,7 @@ introduction: |
     [View](https://www.coursera.org/account/accomplishments/specialization/certificate/D2QHNRSBAS7Z){:target="_blank"}
 
     ---
-    ## Technical Projects
+    ## Technical + Personal Projects
 
     **Projects for UPenn Artificial Intelligence**  
     * Built and trained a neural network on the Fashion MNIST dataset.
@@ -86,21 +86,27 @@ introduction: |
     * Performed text vectorization using transformers and evaluated language model accuracies.
     * Participated in various AI research projects as annotator and RLHF provider.
 
-    **Additional Generative AI Experience**
+    **Generative AI Experience**
     * Alpha tester for OpenAI GPT4-V and Microsoft Designer
     * Custom GPTs: I've made a few fun custom GPTs. Try them out here:
         * [Tiki Mixmaster](https://chatgpt.com/g/g-t5VLu7iOo-tiki-mixmaster){:target="_blank"} - your tiki bartending companion
         * [Podcast Summarizer](https://chatgpt.com/g/g-a1etiLlnY-podcast-summarizer){:target="_blank"} - helps you catch up on all those podcast episodes you've been meaning to listen to
-
-    **Dreamify: A Music Recommender**  
-    Final team project for CIS 550 Database & Information Systems
-    - Built song-recommendation web app using AWS RDS, API integrations, React/Node. 
-    - Personal contribution: UX, front-end web dev, artist/album/song pages with AudioDB and Spotify API integrations, optimized complex SQL queries for content-based recommendations ("if you like this song, you might also like ...").
+    * I'm building a Mahjongg AI Tutor - [Here's the project page](https://htcooper.github.io/mj.html)
 
     **Streamlit Dashboard App**
     * Python and Streamlit data visualization dashboard that pulls insights from a CSV. 
     * [Demo](https://htcooper-rs-dashboard-app-t89tjw.streamlit.app/){:target="_blank"} 
     * [Github repo](https://github.com/htcooper/rs-dashboard){:target="_blank"}
+
+    **UrbanWild - A Proposal for ML-enabled urban wildlife monitoring**  
+    This was a (fictional) product proposal that I put together. It's not real, but I wish it were!
+    * [View PRD]("assets/pdfs/PRD-UrbanWild.pdf"){:target="_blank"}  
+    * [View Pitch Deck]("UrbanWild-PitchDeck.pdf"){:target="_blank"}  
+
+    **Dreamify: A Music Recommender**  
+    Final team project for CIS 550 Database & Information Systems
+    - Built song-recommendation web app using AWS RDS, API integrations, React/Node. 
+    - Personal contribution: UX, front-end web dev, artist/album/song pages with AudioDB and Spotify API integrations, optimized complex SQL queries for content-based recommendations ("if you like this song, you might also like ...").
 
     **Open Source Contributions**
     * [Password Purgatory API (Author: Troy Hunt)](https://github.com/troyhunt/password-purgatory-api){:target="_blank"}  
