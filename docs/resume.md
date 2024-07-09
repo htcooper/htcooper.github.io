@@ -95,8 +95,8 @@ introduction: |
 
     **UrbanWild - A Proposal for ML-enabled urban wildlife research and monitoring**  
     This was a (fictional) product proposal that I put together. It's not real, but I wish it were!
-    * [View PRD]("assets/pdfs/PRD-UrbanWild.pdf"){:target="_blank"}  
-    * [View Pitch Deck]("assets/pdfs/UrbanWild-PitchDeck.pdf"){:target="_blank"}   
+    * [View PRD](assets/pdfs/PRD-UrbanWild.pdf){:target="_blank"}  
+    * [View Pitch Deck](assets/pdfs/UrbanWild-PitchDeck.pdf){:target="_blank"}   
 
     **Streamlit Dashboard App**
     * Python and Streamlit data visualization dashboard that pulls insights from a CSV. 
