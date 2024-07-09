@@ -93,15 +93,15 @@ introduction: |
         * [Podcast Summarizer](https://chatgpt.com/g/g-a1etiLlnY-podcast-summarizer){:target="_blank"} - helps you catch up on all those podcast episodes you've been meaning to listen to
     * I'm building a Mahjongg AI Tutor - [Here's the project page](https://htcooper.github.io/mj.html)
 
+    **UrbanWild - A Proposal for ML-enabled urban wildlife monitoring**  
+    This was a (fictional) product proposal that I put together. It's not real, but I wish it were!
+    * [View PRD]("assets/pdfs/PRD-UrbanWild.pdf"){:target="_blank"}  
+    * [View Pitch Deck]("UrbanWild-PitchDeck.pdf"){:target="_blank"}   
+    
     **Streamlit Dashboard App**
     * Python and Streamlit data visualization dashboard that pulls insights from a CSV. 
     * [Demo](https://htcooper-rs-dashboard-app-t89tjw.streamlit.app/){:target="_blank"} 
     * [Github repo](https://github.com/htcooper/rs-dashboard){:target="_blank"}
-
-    **UrbanWild - A Proposal for ML-enabled urban wildlife monitoring**  
-    This was a (fictional) product proposal that I put together. It's not real, but I wish it were!
-    * [View PRD]("assets/pdfs/PRD-UrbanWild.pdf"){:target="_blank"}  
-    * [View Pitch Deck]("UrbanWild-PitchDeck.pdf"){:target="_blank"}  
 
     **Dreamify: A Music Recommender**  
     Final team project for CIS 550 Database & Information Systems
