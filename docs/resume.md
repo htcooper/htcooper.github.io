@@ -88,16 +88,16 @@ introduction: |
 
     **Generative AI Experience**
     * Alpha tester for OpenAI GPT4-V and Microsoft Designer
+    * I'm building a Mahjongg AI Tutor - [Here's the project page](https://htcooper.github.io/mj.html)
     * Custom GPTs: I've made a few fun custom GPTs. Try them out here:
         * [Tiki Mixmaster](https://chatgpt.com/g/g-t5VLu7iOo-tiki-mixmaster){:target="_blank"} - your tiki bartending companion
         * [Podcast Summarizer](https://chatgpt.com/g/g-a1etiLlnY-podcast-summarizer){:target="_blank"} - helps you catch up on all those podcast episodes you've been meaning to listen to
-    * I'm building a Mahjongg AI Tutor - [Here's the project page](https://htcooper.github.io/mj.html)
 
-    **UrbanWild - A Proposal for ML-enabled urban wildlife monitoring**  
+    **UrbanWild - A Proposal for ML-enabled urban wildlife research and monitoring**  
     This was a (fictional) product proposal that I put together. It's not real, but I wish it were!
     * [View PRD]("assets/pdfs/PRD-UrbanWild.pdf"){:target="_blank"}  
     * [View Pitch Deck]("UrbanWild-PitchDeck.pdf"){:target="_blank"}   
-    
+
     **Streamlit Dashboard App**
     * Python and Streamlit data visualization dashboard that pulls insights from a CSV. 
     * [Demo](https://htcooper-rs-dashboard-app-t89tjw.streamlit.app/){:target="_blank"} 
