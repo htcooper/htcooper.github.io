@@ -17,6 +17,8 @@ introduction: |
 
     Tech skills include Python (PyTorch, TensorFlow, Scikit-learn, OpenCV, Pandas, Hugging Face), SQL, RDBMS design, Relational data modeling, Git, Streamlit, HTML/CSS/jQuery, Linux/Ubuntu CLI, Azure AI/ML, AWS RDS, Java. Familiar with MongoDB, Neo4J, React, Node.js, Ruby, and Unity.
 
+    Currently working on a small side-project building an [AI Mahjongg tutor](https://htcooper.github.io/mj.html).
+
 # optional call to action links
 actions:
   - label: "Resume"
