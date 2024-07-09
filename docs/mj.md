@@ -95,6 +95,13 @@ introduction: |
         - (Testing) Shows transcribed text and identified intents.
         - Provides real-time advice to the user based on processed data.
 
+    Technical specs:
+    - Vision model: Azure AI Custom Vision (compact model)
+    - Speech model: Azure Language (NLU)
+    - Card data: JSON
+    - Gameplay data: TXT file with instructions for GPT
+    - GPT: OpenAI Assistants API / GPT trained on American Mahjongg strategy
+
     ---
     ## Basic Workflow
     - Capture: Camera and microphone capture real-time data.
@@ -137,7 +144,7 @@ introduction: |
     ---
     ## Risks + Considerations
     - Speed: 
-        - MJAI needs to provide advice in a timely manner as to not interfere with gameplay
+        - MJAI might be slow and interfere with gameplay
             - ensure low-latency processing for real-time interaction
             - keep models small and edge-device compatible
     - Accuracy: 
@@ -149,7 +156,7 @@ introduction: |
             - consider keeping transparent recording of audio/visual cues for user
             - consider manual confirmation/ability to correct by user
         - MJAI may forget which tiles have been played:
-            - ensure agent memory to track all tiles 'seen' by the AI ('seen' via object detection model and 'heard' via speech-to-text model). 
+            - ensure agent memory to track all tiles 'seen' and 'heard' by the AI ('seen' via object detection model and 'heard' via speech-to-text model). 
             - store tile history in a text file and use RAG (+ describe text file data in GPT instructions for better retrieval)
     - Security: Implement robust security measures to protect data and user privacy
 
