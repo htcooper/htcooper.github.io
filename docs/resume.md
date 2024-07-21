@@ -24,6 +24,11 @@ introduction: |
     ---
     ## Recent Work Experience
 
+    **AI Trainer / Prompt Engineer / Data Quality Consultant**, *Freelance*
+    June 2024 - Present
+    - Improve the quality of generative AI model outputs with RLHF. Provide detailed feedback across axes such as correctness, harmfulness/safety, and verbosity to ensure compliance with legal and ethical obligations.
+    - Subject to NDA.
+
     **Head of Product**, *Cohart*  
     May 2023 - Feb 2024  
     San Francisco Bay Area / Remote (Globally distributed team)  
@@ -39,22 +44,20 @@ introduction: |
 
 
     **Digital Strategy Director**, *Claremont Graduate University*  
-    Jul 2017 - Jun 2022  
+    Sep 2015 - Jun 2022  
     Claremont, CA
-    * Led digital product and marketing teams and oversaw relationships with 3 external agency partners.
-    * Improved website SEO, accessibility, and QA scores to meet or exceed education industry benchmarks, growing inbound traffic 30% YoY for FY 20/21
-    * Improved applicant numbers for teacher education programs by 157% YoY 20/21 through user journey research, new persona development, and data-driven marketing content development.
-    * Led intranet migration from 3rd party platform and redesigned it according to user/security needs, making it the 2nd most visited site on the CGU domain. 
-    * Reduced staff report generation time by 80% by implementing CGU's first dynamic reporting framework using Google Data Studio.
+    * Led digital product and marketing teams and managed partnerships with 3 external agencies.
+    * Improved CGU website SEO, accessibility, and QA scores to meet or exceed industry benchmarks, growing inbound traffic 30% YoY for FY 20/21
+    * Improved applicant numbers for education programs by 157% YoY 20/21 through user journey research, persona development, and data-driven content development.
+    * Led intranet migration from 3rd party platform and rebuilt it according to user/security needs, making it the 2nd most visited site on the CGU domain. 
+    - Created first comprehensive digital advertising strategy for the university, launching coordinated paid media and SEM campaigns, bringing in 20% of the enrolled class for the new MA in Leadership program. 
     * Created brand awareness campaign that brought 260K new users to the CGU website.
     * Won a Silver CASE District VII award as content lead for the CGU Viewbook.
-
-    **Digital Strategy Lead**, *Claremont Graduate University*  
-    Sep 2015 - Jun 2017  
-    Claremont, CA
     - Won a Bronze CASE District VII Award and increased admissions leads by 20% within the first year of executing the largest digital transformation project in the university's history.
     * Improved bounce-rate/stickiness on academic program pages by 20% and increased time-on-page over industry standards through market- and user-research-fueled content/UX strategy.
     - Managed stakeholder buy-in on a cross-functional team that included 6 members of senior leadership and an external development agency.
+    - Led the successful redesign/relaunch of the Drucker School of Management’s website, resulting in an almost 300% increase in new visitors YoY.
+    - Promoted to Director in July 2017, reflecting recognition of leadership and impact.
 
     **Additional Work Experience**  
     - *Principal, Hollis Tenley Consulting*
@@ -80,18 +83,18 @@ introduction: |
     ---
     ## Technical + Personal Projects
 
-    **Projects for UPenn Artificial Intelligence**  
-    * Built and trained a neural network on the Fashion MNIST dataset.
-    * Built N-gram language model.
-    * Performed text vectorization using transformers and evaluated language model accuracies.
-    * Participated in various AI research projects as annotator and RLHF provider.
-
     **Generative AI Experience**
     * Alpha tester for OpenAI GPT4-V and Microsoft Designer
     * I'm building a Mahjongg AI Tutor - [Here's the project page](https://htcooper.github.io/mj.html)
     * Custom GPTs: I've made a few fun custom GPTs. Try them out here:
         * [Tiki Mixmaster](https://chatgpt.com/g/g-t5VLu7iOo-tiki-mixmaster){:target="_blank"} - your tiki bartending companion
         * [Podcast Summarizer](https://chatgpt.com/g/g-a1etiLlnY-podcast-summarizer){:target="_blank"} - helps you catch up on all those podcast episodes you've been meaning to listen to
+
+    **Projects for UPenn Artificial Intelligence**  
+    * Built and trained a neural network on the Fashion MNIST dataset.
+    * Built N-gram language model.
+    * Performed text vectorization using transformers and evaluated language model accuracies.
+    * Participated in various AI research projects as annotator and RLHF provider.
 
     **UrbanWild - A Proposal for ML-enabled urban wildlife research and monitoring app**  
     This was a (fictional) product proposal that I put together. It's not real, but I wish it were!
