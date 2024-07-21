@@ -24,7 +24,7 @@ introduction: |
     ---
     ## Recent Work Experience
 
-    **AI Trainer / Prompt Engineer / Data Quality Consultant**, *Freelance*
+    **AI Trainer / Prompt Engineer / Data Quality Consultant**, *Freelance*  
     June 2024 - Present
     - Improve the quality of generative AI model outputs with RLHF. Provide detailed feedback across axes such as correctness, harmfulness/safety, and verbosity to ensure compliance with legal and ethical obligations.
     - Subject to NDA.
