@@ -88,7 +88,7 @@ introduction: |
         - Intent and text are sent to the backend via APIs.
     - Backend Integration:
         - Backend receives data from image and voice processing pipelines.
-        - Data is analyzed to provide contextual advice.
+        - Data is analyzed to provide contextual advice (Python).
         - Real-time advice is generated using a GPT model and sent back to the user interface.
     - User Interface:
         - (Testing) Displays real-time images and identified objects.
@@ -100,6 +100,7 @@ introduction: |
     - Speech model: Azure Language (NLU)
     - Card data: JSON
     - Gameplay data: TXT file with instructions for GPT
+    - Python app for calculating hand likelihood percentages and reducing GPT hallucination potential
     - GPT: OpenAI Assistants API / GPT trained on American Mahjongg strategy
 
     ---
