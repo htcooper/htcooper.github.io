@@ -97,8 +97,8 @@ introduction: |
 
     Technical specs:
     - Vision model: Azure AI Custom Vision (compact model)
-    - Speech model: OpenAI Whisper Tiny (trigger listening via device for now - passive listening/wake word v2)
-    - Card data: JSON
+    - Speech model: OpenAI Whisper Tiny (trigger listening via device for now - passive listening/wake word - Picovoice v2)
+    - Card data: JSON or dict
     - Gameplay data: TXT file with instructions for GPT
     - Python app for calculating hand likelihood percentages and reducing GPT hallucination potential
     - GPT: OpenAI Assistants API / GPT trained on American Mahjongg strategy
@@ -133,6 +133,7 @@ introduction: |
             - game state recorded to txt file
         - Voice trigger or keyboard input signals the user's turn and prompts MJAI for strategy advice.  (voice processing pipeline)
             - MJAI views current hand (image processing pipeline)
+            - Voice/image data processed and results returned to MJAI
             - MJAI gives advice on proceeding
             - MJAI will reference all knowledge gathered to date when providing advice.
 
