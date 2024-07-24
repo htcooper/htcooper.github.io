@@ -97,7 +97,7 @@ introduction: |
 
     Technical specs:
     - Vision model: Azure AI Custom Vision (compact model)
-    - Speech model: OpenAI Whisper Tiny
+    - Speech model: OpenAI Whisper Tiny (trigger listening via device for now - passive listening/wake word v2)
     - Card data: JSON
     - Gameplay data: TXT file with instructions for GPT
     - Python app for calculating hand likelihood percentages and reducing GPT hallucination potential
