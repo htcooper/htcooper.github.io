@@ -11,7 +11,10 @@ introduction: |
     **Master of Computer & Information Technology (MCIT), Computer Science**  
     May 2022  
     GPA: 3.96/4.0  
-    * Coursework: Artificial Intelligence, Algorithms & Computation, Data Structures & Software Design, Database & Information Systems, Computer & Network Security, Computer Systems Programming, Blockchains & Cryptography
+    * Coursework: Artificial Intelligence, Algorithms & Computation, Data Structures & Software Design, Database & Information Systems, Computer & Network Security, Computer Systems Programming, Blockchains & Cryptography   
+
+    **Graduate Certificate in Artificial Intelligence**
+    Aug 2025 (expected)
 
     **Claremont Graduate University**  
     **Master of Fine Arts**  
@@ -34,7 +37,7 @@ introduction: |
     San Francisco Bay Area / Remote (Globally distributed team)  
     * First head of product for seed-stage B2B and B2C creator-economy start-up with social, e-comm/marketplace, and SaaS features.
     * Reported to COO and led 3-person design/UX team.
-    * Oversaw end-to-end product execution for 9 major feature releases on mobile/web apps, increasing MAUs by over 400% and active users by 100%.
+    * Oversaw end-to-end product execution for 9 major feature releases on mobile/web apps, increasing MAUs by over 400% and active users by 2x.
     * Drove launch of first Android app, doubling WAUs in first month post-release.
     * Built first unified analytics reporting framework through user-journey event identification and documentation, providing SQL queries to data consultant.
     * Worked with consultants for Cohart's first AI/ML integration to establish recommendation behaviors for search and advisory flows.
