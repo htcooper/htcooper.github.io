@@ -60,7 +60,6 @@ introduction: |
     * Improved bounce-rate/stickiness on academic program pages by 20% and increased time-on-page over industry standards through market- and user-research-fueled content/UX strategy.
     - Managed stakeholder buy-in on a cross-functional team that included 6 members of senior leadership and an external development agency.
     - Led the successful redesign/relaunch of the Drucker School of Management’s website, resulting in an almost 300% increase in new visitors YoY.
-    - Promoted to Director in July 2017, reflecting recognition of leadership and impact.
 
     **Additional Work Experience**  
     - *Principal, Hollis Tenley Consulting*
