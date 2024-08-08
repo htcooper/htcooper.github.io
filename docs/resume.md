@@ -14,7 +14,7 @@ introduction: |
     * Coursework: Artificial Intelligence, Algorithms & Computation, Data Structures & Software Design, Database & Information Systems, Computer & Network Security, Computer Systems Programming, Blockchains & Cryptography   
 
     **University of Pennsylvania**  
-    **Graduate Certificate in Artificial Intelligence**
+    **Graduate Certificate in Artificial Intelligence**   
     Aug 2025 (expected)
 
     **Claremont Graduate University**  
