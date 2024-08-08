@@ -124,6 +124,9 @@ introduction: |
     **Machine Learning + AI**  
     NLP, Generative AI, Reinforcement learning, CNNs, Computer vision, Transformers, Embeddings, Deep learning, Responsible AI principles
 
+    **Product Management**   
+    Roadmapping, End-to-end execution, Cross-functional collaboration, Agile, Stakeholder communication, Risk management
+
     **Languages + Tools**  
     Python, Java, HTML/CSS, Javascript, SQL, Git, Streamlit, API integration
 
