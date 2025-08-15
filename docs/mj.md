@@ -4,9 +4,9 @@ title: Mahjongg AI (MJAI)
 
 introduction: |
   
-    This is a side project that I've been working on for a little while. I'm finishing it up as part of [buildspace nights & weekends season 5](https://buildspace.so/){:target="_blank"}. I'll be updating this page as I work through it - **everything below is subject to change**.  
+    This is a side project that I've been working on for a little while, including as part of [buildspace nights & weekends season 5](https://buildspace.so/){:target="_blank"}. I'll be updating this page as I work through it - **considering the speed of AI, everything below is subject to change**.  
 
-    Follow along with me on Insta! [Mahjongg AI Instagram](https://www.instagram.com/mahjongg_ai/){:target="_blank"}
+    For a minute, I thought it would be a good idea to create a MJAI Insta: [Mahjongg AI Instagram](https://www.instagram.com/mahjongg_ai/){:target="_blank"}
 
     ---
     ## Background
@@ -56,7 +56,7 @@ introduction: |
     - The player should be able to see and interact with the display without disrupting the game.
 
     ## MVP notes
-    - The card being used for the game can be hard-coded in. 
+    - The card being used for the game can be hard-coded in (it's only me using it for now!).
     - The vision model will be trained on the specific tile set that I use. 
     - The trained vision and NLU models will be compact enough to run on an edge device.
     - MJAI will track the game state through audio cues (players announce which tiles they are discarding and which they are exposing), and will ask for clarification if it doesn't understand.
@@ -78,14 +78,14 @@ introduction: |
     
     - Image Processing Pipeline:
         - Camera captures images.
-        - Images are sent to the edge device.
+        - Images are sent to edge device.
         - Object detection model processes images and identifies objects.
-        - Results are sent to the backend via APIs.  
+        - Results are sent to the backend via API.  
     - Voice Processing Pipeline:
         - Microphone captures audio.
-        - Audio is sent to the speech-to-text engine.
+        - Audio is sent to the speech-to-text agent.
         - Text is processed by the NLP model to identify intent.
-        - Intent and text are sent to the backend via APIs.
+        - Intent and text are sent to the backend via API.
     - Backend Integration:
         - Backend receives data from image and voice processing pipelines.
         - Data is analyzed to provide contextual advice (Python).
@@ -102,6 +102,7 @@ introduction: |
     - Gameplay data: TXT file with instructions for GPT
     - Python app for calculating hand likelihood percentages and reducing GPT hallucination potential
     - GPT: OpenAI Assistants API / GPT trained on American Mahjongg strategy
+    - Agents to handle voice processing and vision processing.
 
     ---
     ## Basic Workflow
@@ -164,8 +165,8 @@ introduction: |
 
     ---
     ## Resources
-    - Basic Custom GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
-    - RT Object Detection app: [View Github](https://github.com/htcooper/mahjongg-ai-tutor){:target="_blank"}
+    - (This needs rework of instructions) Basic Custom GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
+    - RT Object Detection app (just being used to test the vision model): [View Github](https://github.com/htcooper/mahjongg-ai-tutor){:target="_blank"}
 
 
 
