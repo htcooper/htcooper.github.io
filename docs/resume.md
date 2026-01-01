@@ -83,7 +83,7 @@ introduction: |
     ---
     ## Applied AI + Engineering Projects
 
-    **Generative AI Experience**
+    **Generative AI Projects**
     * Mahjongg AI Agent (Azure/OpenAI): Building a real-time strategy agent for edge devices. Focuses on low-latency decision making and multimodal input processing. [Here's the project page](https://htcooper.github.io/mj.html)
     * Headshot Generator (Cursor/Claude Code): Developed a professional headshot generator using React and Google Nano Banana API. Built rapidly using Cursor to test AI-assisted coding workflows.
     * Custom GPTs: I've made a few fun custom GPTs. Try them out here:
