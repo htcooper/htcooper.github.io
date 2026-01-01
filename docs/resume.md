@@ -33,8 +33,8 @@ introduction: |
     ---
     ## Recent Work Experience
 
-    **Product Manager**, **Blackthorn.io**
-    Sep 2024 - Present
+    **Product Manager**, **Blackthorn.io**  
+    Sep 2024 - Present  
     New York, NY / Remote (Globally distributed team)  
     B2B Salesforce-native events platform. Focusing on AI-driven enterprise workflows.
     - **AI Workflow Strategy & Execution:** Built a 0→1 Custom GPT Assistant to automate customer feedback analysis. Wrote Python scripts to extract/clean data from Productboard and engineered system prompts (Regex/synonym bank) to ensure high-accuracy retrieval.
