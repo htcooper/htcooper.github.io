@@ -52,7 +52,7 @@ introduction: |
     - Subject to NDA.
 
     **Head of Product & First PM**, *Cohart*  
-    May 2023 - Feb 2024
+    May 2023 - Feb 2024  
     San Francisco Bay Area / Remote (Globally distributed team)  
     Seed-stage B2B/B2C social marketplace startup. High-velocity shipping and 0→1 execution.
     - **High-Velocity Delivery:** Led end-to-end delivery for 9 major feature sets in a lean, fast-paced environment. Drove a 400% increase in MAUs and 2x active accounts by rapidly iterating based on user feedback.
