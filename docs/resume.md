@@ -114,7 +114,7 @@ introduction: |
     ---
     ## Interests + Fun Facts!
 
-    - I am an artist who has shown in museums and galleries around the United States. My work blends the digital with traditional media and takes the form of paintings and site-specific installations. See one of my recent works recently acquired by Ontario International Airport [here](https://vimeo.com/895608031/ea55fb2746?share=copy){:target="_blank"}.  
+    - I am an artist who has shown in museums and galleries around the United States. My work blends the digital with traditional media and takes the form of paintings and site-specific installations. See one of my works recently acquired by Ontario International Airport [here](https://vimeo.com/895608031/ea55fb2746?share=copy){:target="_blank"}.  
     - I've also worked as a volunteer mountain patroller (snowboard) at June Mountain, CA. Previously, I was an AASI-certified snowboarding instructor who specialized in teaching women to snowboard.  
 
     
