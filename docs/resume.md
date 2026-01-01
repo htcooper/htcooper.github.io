@@ -9,6 +9,7 @@ introduction: |
     ## Summary
     Product leader with 9+ years of experience in digital strategy and technical product management. Specialize in Enterprise AI and B2B SaaS, combining a Master’s in Computer Science (UPenn) with hands-on expertise in agentic workflows. Proven track record of defining product strategy, executing 0→1, and shipping complex technical projects in high-velocity startup environments. Technical builder comfortable using Python and APIs to prototype internal tools and drive engineering fundamentals in product delivery.
 
+    ---
     ## Education
     **University of Pennsylvania**  
     **Master of Computer & Information Technology (MCIT), Computer Science**  
