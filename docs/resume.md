@@ -44,7 +44,7 @@ introduction: |
     - **Platform Microservices & UX:** Leading the product evolution for a standalone event capacity microservice (API-first). Designing the end-to-end user experience for complex waitlisting logic while managing the API roadmap to ensure scalable registration handling beyond Salesforce architecture (currently driving pre-GA development).
 
     **RLHF Consultant**, *Freelance*  
-    June 2024 - Present
+    June 2024 - Present  
     Current Focus: Contributing to the safety and alignment of next-generation Generative AI models through rigorous RLHF (Reinforcement Learning from Human Feedback) loops.
     - **Model Alignment:** Evaluating and ranking model outputs to reduce hallucinations and improve reasoning capabilities in complex prompts. 
     - **Performance Metrics:** Analyzing generative outputs for factual accuracy, safety compliance, and coding logic execution.
