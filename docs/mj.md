@@ -86,19 +86,19 @@ introduction: |
     
     I'm aiming for a middle path: ask only when it matters.  
 
-    ### What the coach detects  
+    ### What the coach detects
     The coach watches for uncertainty across vision, audio, and strategy. Examples:  
     - Ambiguous tile: “I'm seeing either 3 Bam or 3 Crack in slot 9.”
     - Unstable detection: a tile keeps flipping across frames.
     - Ambiguous call: “Did you say pung or kong?”
     - Close hand scores: “Two hands are close: Hand A vs Hand B.”
 
-    ### When it interrupts (decision logic)  
+    ### When it interrupts (decision logic)
     - High confidence (> 0.9): auto-proceed, no question
     - Medium (0.6–0.9): ask if not rate-limited
     - Low (< 0.6): always ask, increase urgency
 
-    ### Rate limiting (so it doesn't become annoying)  
+    ### Rate limiting (so it doesn't become annoying)
     - Max 3 prompts per minute
     - Minimum 5 seconds between prompts
     - High-urgency events can bypass limits
@@ -106,7 +106,7 @@ introduction: |
     ---
     ## Architecture
 
-    ### Codebase Modules:  
+    ### Codebase Modules:
     - Vision
     -- TensorFlow model inference from an Azure Custom Vision export.
     -- Recognizes 43 tile classes and maps labels into internal Tile objects.
