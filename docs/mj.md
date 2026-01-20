@@ -26,7 +26,7 @@ introduction: |
     ## What it does
     - Computer vision detects and classifies tiles from a webcam feed (43 classes).
     - Audio + speech-to-text transcribes table calls and parses tile names / calls (like "mahjongg!").
-    - Strategy engine scores candidate hands (from an NMJL card JSON) and returns the top targets + a discard suggestion.
+    - Strategy engine scores candidate hands (from a Majongg card JSON) and returns the top targets + a discard suggestion.
     - Coach agent detects ambiguity and prompts you for confirmation when confidence is low.
     - LLM narrator turns deterministic strategy output into friendly coaching text (it’s not the decision-maker).
 
@@ -116,7 +116,7 @@ introduction: |
     -- Recognizes 43 tile classes and maps labels into internal Tile objects.
     - Audio
     -- Captures audio chunks and transcribes with Whisper.
-    -- Parses calls + tile names with a Mahjong-aware normalization step.
+    -- Parses calls + tile names with a Mahjongg-aware normalization step.
     - Game State
     -- Tracks the best-known current hand, discards/calls, and a confidence level.
     - Strategy Engine
