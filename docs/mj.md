@@ -184,28 +184,20 @@ introduction: |
     MJAI runs a repeating loop in the background:
 
     1. **Sense**
-
       * Vision module updates the player’s current hand state.
       * Audio module listens for calls/discards and parses game events (for example: “discard 5 dot”, “pung 9 bam”).
-
     2. **Update state**
-
       * Game state is updated with:
-
         * player hand (with confidence)
         * any known discards/exposures (as available via audio)
         * turn/phase markers if provided
         * If MJAI isn’t confident about a detected tile or a parsed call, it creates an **uncertainty event**.
-
     3. **Coach Agent intervention (only when needed)**
-    
       * If uncertainty crosses a threshold, MJAI prompts the player with a short question.
       * The prompt is rate-limited to avoid interrupting gameplay (unless it’s high urgency).
       * The player can answer via quick buttons (or optional keyboard input).
       * The system updates state based on the answer and continues.
-
     4. **Advise on demand**
-
      * When it becomes the player’s turn, the player taps **"My Turn"** (or uses a voice command / hotkey).
      * MJAI recomputes:  
        * Top target hands (ranked)
