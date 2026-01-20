@@ -9,28 +9,36 @@ introduction: |
     For a minute, I thought it would be a good idea to create a MJAI Insta: [Mahjongg AI Instagram](https://www.instagram.com/mahjongg_ai/){:target="_blank"}
 
     ---
+    Status: MVP in progress (vision model trained; coach agent + UI in development)  
+    Runs on: Raspberry Pi + webcam/mic  
+    Inputs: tiles + calls  
+    Outputs: top 3 targets + discard + clarifying questions
+
+    ---
     ## Background
     Mahjongg is a game of strategy and luck that I enjoy playing. But, I'm slow - I spend a lot of time reading the card, and a lot of time watching what others are doing. There are strategic decisions that have to be made each turn, so I wanted to create something to help me get faster at knowing roughly what I should do next. Is this cheating? Perhaps, although the luck portion of the game means that you can improve your chances of winning, but not guarantee them.  
     
     For me, it will stand in as a skilled player giving me advice. Ideally, I won't need this assistant as much the more that I play.
 
+    This project is built as an uncertainty-driven “coach agent”: when the system isn’t sure what it saw/heard (or when two strategic options are neck-and-neck), it proactively asks you a quick clarifying question instead of silently guessing.
+
     ---
     ## What it will do
-    MJAI will make recommendations based on American Mahjongg strategy. Based on the tiles played and the player's current hand, it should recommend strategy:
-    - In the Charleston, it should recommend which tiles to keep and which to trade for each round
-    - In the main game, it should recommend which hands are good bets - and which tiles to discard
-    - It should give the player no more than 3 strategic suggestions at a time, ranked if possible.
-
-    ## What it will not do
-    - Track the potential hands of other players
-    - Try to guess other players' strategies (as a primary goal)
-    - Suggest strategies to play defensively (no pants on the ground)
+    - Computer vision detects and classifies tiles from a webcam feed (43 classes).
+    - Audio + speech-to-text transcribes table calls and parses tile names / calls (like "mahjongg!").
+    - Strategy engine scores candidate hands (from an NMJL card JSON) and returns the top targets + a discard suggestion.
+    - Coach agent detects ambiguity and prompts you for confirmation when confidence is low.
+    - LLM narrator turns deterministic strategy output into friendly coaching text (it’s not the decision-maker).
 
     ---
-    ## Target User Personas
-    - New Mahjongg players who are just learning
+    <details>
+    <summary><strong>Target user personas</strong></summary>  
+
+    - New Mahjongg players who are just learning  
     - Intermediate Mahjongg players who want to refine their strategy  
-    - Anti-personas: advanced mahjongg players, players in a competition environment
+    - Anti-personas: advanced players, competition players  
+
+    </details>  
 
     ---
     ## Functional requirements
@@ -39,7 +47,7 @@ introduction: |
     - Needs to know what pongs/kongs have been exposed by other players
     - Needs to know whose turn it is
     - Needs to know the overall status/progress of the game (beginning / middle / end of the game)
-    - Needs to know and follow the current Mahjongg hands/card for this year. 
+    - Needs to know and follow the current Mahjongg hands/card (player upload). 
     - Needs American Mahjongg strategy notes.
     - Needs to know American Mahjongg rules (ex. if the player picks up a discard, it should no longer advise any concealed hands, a joker cannot be used to complete a pair or as a single, etc.)
     - Needs to be reasonably portable and able to sit next to the player using it without interfering with the game.
@@ -56,9 +64,8 @@ introduction: |
     - The player should be able to see and interact with the display without disrupting the game.
 
     ## MVP notes
-    - The card being used for the game can be hard-coded in (it's only me using it for now!).
     - The vision model will be trained on the specific tile set that I use. 
-    - The trained vision and NLU models will be compact enough to run on an edge device.
+    - It will be compact enough to run on an edge device.
     - MJAI will track the game state through audio cues (players announce which tiles they are discarding and which they are exposing), and will ask for clarification if it doesn't understand.
     - MJAI will only understand English audio cues.
 
@@ -70,51 +77,71 @@ introduction: |
     ---
     ## V2 notes
     - Transform the MVP into a mobile app.
-    - Allow users to upload the MJ card they want to use.
     - Vision model will be trained off of a larger varied dataset of MJ tiles.  
     
     --- 
-    ## Architecture
-    
-    - Image Processing Pipeline:
-        - Camera captures images.
-        - Images are sent to edge device.
-        - Object detection model processes images and identifies objects.
-        - Results are sent to the backend via API.  
-    - Voice Processing Pipeline:
-        - Microphone captures audio.
-        - Audio is sent to the speech-to-text agent.
-        - Text is processed by the NLP model to identify intent.
-        - Intent and text are sent to the backend via API.
-    - Backend Integration:
-        - Backend receives data from image and voice processing pipelines.
-        - Data is analyzed to provide contextual advice (Python).
-        - Real-time advice is generated using a GPT model and sent back to the user interface.
-    - User Interface:
-        - (Testing) Displays real-time images and identified objects.
-        - (Testing) Shows transcribed text and identified intents.
-        - Provides real-time advice to the user based on processed data.
+    ## More about the Coach Agent!
 
-    Technical specs:
-    - Vision model: Azure AI Custom Vision (compact model)
-    - Speech model: OpenAI Whisper Tiny (trigger listening via device for now - passive listening/wake word - Picovoice v2)
-    - Card data: JSON or dict
-    - Gameplay data: TXT file with instructions for GPT
-    - Python app for calculating hand likelihood percentages and reducing GPT hallucination potential
-    - GPT: OpenAI Assistants API / GPT trained on American Mahjongg strategy
-    - Agents to handle voice processing and vision processing.
+    Most systems in this space either (a) silently guess when inputs are messy, or (b) constantly ask you to confirm everything.  
+    
+    I'm aiming for a middle path: ask only when it matters.  
+
+    ### What the coach detects  
+    The coach watches for uncertainty across vision, audio, and strategy. Examples:  
+    - Ambiguous tile: “I'm seeing either 3 Bam or 3 Crack in slot 9.”
+    - Unstable detection: a tile keeps flipping across frames.
+    - Ambiguous call: “Did you say pung or kong?”
+    - Close hand scores: “Two hands are close: Hand A vs Hand B.”
+
+    ### When it interrupts (decision logic)  
+    - High confidence (> 0.9): auto-proceed, no question
+    - Medium (0.6–0.9): ask if not rate-limited
+    - Low (< 0.6): always ask, increase urgency
+
+    ### Rate limiting (so it doesn't become annoying)  
+    - Max 3 prompts per minute
+    - Minimum 5 seconds between prompts
+    - High-urgency events can bypass limits
+
+    ---
+    ## Architecture
+
+    ### Codebase Modules:  
+    - Vision
+    -- TensorFlow model inference from an Azure Custom Vision export.
+    -- Recognizes 43 tile classes and maps labels into internal Tile objects.
+    - Audio
+    -- Captures audio chunks and transcribes with Whisper.
+    -- Parses calls + tile names with a Mahjong-aware normalization step.
+    - Game State
+    -- Tracks the best-known current hand, discards/calls, and a confidence level.
+    - Strategy Engine
+    -- Scores candidate hands, returns top targets, and generates discard advice.
+    -- Supports a preference signal like "speed" vs "points" (used in sorting).
+    - Coach Agent
+    -- Produces uncertainty events + generates short questions + processes answers.
+    -- Integrates with the orchestrator and UI (distinct "coach question" widget).
+    - Orchestrator
+    -- Coordinates all modules, runs the main processing loop, and routes events.
+    -- The processing loop pulls detections, updates state, runs strategy, updates UI, decays confidence.
+
+    ---
+    ## UI
+    Designed for an 800×480 Raspberry Pi touchscreen layout.  
+    Core UI areas:
+    - Current hand
+    - Top target hands (ranked)
+    - Discard recommendation
+    - Status + confidence indicator
+    - Coach prompt area (when needed)
+
+    ---
+    ## Resilience + manual controls
+    Real-world inputs are messy, so the system is built to degrade gracefully (and let you override).  
+    Manual controls include: New Game, End Game, Resync Hand, Advance Turn, Tile Correction.  
 
     ---
     ## Basic Workflow
-    - Capture: Camera and microphone capture real-time data.
-    - Process: Images and audio are processed for object detection and speech-to-text conversion.
-    - Analyze: Processed data is analyzed for intent recognition and context understanding.
-    - Advise: Real-time advice is generated and displayed to the user.
-
-    ---
-    ## Agentic Workflow (MVP)
-
-    ![Agentic Workflow](/assets/images/MJAI_Workflow.png "Agentic Workflow")
 
     - User starts the game workflow with the AI Agent (MJAI)
 
@@ -165,7 +192,6 @@ introduction: |
 
     ---
     ## Resources
-    - (This needs rework of instructions) Basic Custom GPT: [View here](https://chatgpt.com/g/g-GRfqK6q6W-mahjongg-tutor){:target="_blank"}
     - RT Object Detection app (just being used to test the vision model): [View Github](https://github.com/htcooper/mahjongg-ai-tutor){:target="_blank"}
 
 
