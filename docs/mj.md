@@ -184,31 +184,30 @@ introduction: |
     MJAI runs a repeating loop in the background:
 
     1. **Sense**
-      * Vision module updates the player’s current hand state.
-      * Audio module listens for calls/discards and parses game events (for example: “discard 5 dot”, “pung 9 bam”).
+        * Vision module updates the player’s current hand state.
+        * Audio module listens for calls/discards and parses game events (for example: “discard 5 dot”, “pung 9 bam”).
     2. **Update state**
-      * Game state is updated with:
-        * player hand (with confidence)
-        * any known discards/exposures (as available via audio)
-        * turn/phase markers if provided
-        * If MJAI isn’t confident about a detected tile or a parsed call, it creates an **uncertainty event**.
+        * Game state is updated with:
+            * player hand (with confidence)
+            * any known discards/exposures (as available via audio)
+            * turn/phase markers if provided
+            * If MJAI isn’t confident about a detected tile or a parsed call, it creates an **uncertainty event**.
     3. **Coach Agent intervention (only when needed)**
-      * If uncertainty crosses a threshold, MJAI prompts the player with a short question.
-      * The prompt is rate-limited to avoid interrupting gameplay (unless it’s high urgency).
-      * The player can answer via quick buttons (or optional keyboard input).
-      * The system updates state based on the answer and continues.
+        * If uncertainty crosses a threshold, MJAI prompts the player with a short question.
+        * The prompt is rate-limited to avoid interrupting gameplay (unless it’s high urgency).
+        * The player can answer via quick buttons (or optional keyboard input).
+        * The system updates state based on the answer and continues.
     4. **Advise on demand**
-     * When it becomes the player’s turn, the player taps **"My Turn"** (or uses a voice command / hotkey).
-     * MJAI recomputes:  
-       * Top target hands (ranked)
-       * One discard recommendation aligned to those targets
-       * Short rationale
-     * The LLM narrator rewrites the rationale into friendly coaching text. The underlying recommendation remains deterministic.
+        * When it becomes the player’s turn, the player taps **"My Turn"** (or uses a voice command / hotkey).
+        * MJAI recomputes:  
+            * Top target hands (ranked)
+            * One discard recommendation aligned to those targets
+            * Short rationale
+        * The LLM narrator rewrites the rationale into friendly coaching text. The underlying recommendation remains deterministic.
 
     ### 4) End of game + review
 
     * When a player calls **"Mahjongg!"**, MJAI logs the end state and asks the user to confirm the outcome:
-
       * **I won**
       * **I lost**
     * MJAI provides a short “what I would do next time” reflection:
@@ -258,10 +257,10 @@ introduction: |
             - allow the user to temporarily mute prompts while keeping passive status indicators
         - Coach Agent asks too few questions and silently proceeds with bad assumptions
             - escalate urgency when confidence drops below a hard threshold
-            - surface a persistent “Needs confirmation” indicator when unresolved uncertainty exists
+            - surface a persistent "Needs confirmation" indicator when unresolved uncertainty exists
     - Data handling + privacy (post MVP)
         - Capturing camera/mic data could create privacy concerns at a live table
-            - default to **local-only processing** on the device
+            - default to local-only processing on the device
             - avoid uploading audio/video by default; if logs are enabled, store them locally and make them opt-in
             - be explicit on this page about what is recorded (if anything) and how to disable it
 
