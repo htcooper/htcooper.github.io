@@ -9,10 +9,10 @@ introduction: |
     For a minute, I thought it would be a good idea to create a MJAI Insta: [Mahjongg AI Instagram](https://www.instagram.com/mahjongg_ai/){:target="_blank"}
 
     ---
-    Status: MVP in progress (vision model trained; coach agent + UI in development)  
-    Runs on: Raspberry Pi + webcam/mic  
-    Inputs: tiles + calls  
-    Outputs: top 3 targets + discard + clarifying questions
+    **Status:** MVP in progress (vision model trained; coach agent + UI in development)  
+    **Runs on:** Raspberry Pi + webcam/mic  
+    **Inputs:** tiles + calls  
+    **Outputs:** top 3 targets + discard + clarifying questions
 
     ---
     ## Background
@@ -23,7 +23,7 @@ introduction: |
     This project is built as an uncertainty-driven “coach agent”: when the system isn’t sure what it saw/heard (or when two strategic options are neck-and-neck), it proactively asks you a quick clarifying question instead of silently guessing.
 
     ---
-    ## What it will do
+    ## What it does
     - Computer vision detects and classifies tiles from a webcam feed (43 classes).
     - Audio + speech-to-text transcribes table calls and parses tile names / calls (like "mahjongg!").
     - Strategy engine scores candidate hands (from an NMJL card JSON) and returns the top targets + a discard suggestion.
@@ -31,6 +31,8 @@ introduction: |
     - LLM narrator turns deterministic strategy output into friendly coaching text (it’s not the decision-maker).
 
     ---
+    ## Product-y Stuff  
+
     <details markdown="1">
     <summary><span style="font-size: 1.35rem; font-weight: 700;">Target user personas</span></summary>  
 
@@ -41,7 +43,9 @@ introduction: |
     </details>  
 
     ---
-    ## Functional requirements
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">Functional requirements</span></summary>  
+    
     - Needs to see/know the player's current hand
     - Needs to know what tiles have been discarded
     - Needs to know what pongs/kongs have been exposed by other players
@@ -50,10 +54,14 @@ introduction: |
     - Needs to know and follow the current Mahjongg hands/card (player upload). 
     - Needs American Mahjongg strategy notes.
     - Needs to know American Mahjongg rules (ex. if the player picks up a discard, it should no longer advise any concealed hands, a joker cannot be used to complete a pair or as a single, etc.)
-    - Needs to be reasonably portable and able to sit next to the player using it without interfering with the game.
+    - Needs to be reasonably portable and able to sit next to the player using it without interfering with the game.  
+
+    </details>  
    
     ---
-    ## MVP acceptance criteria:
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">MVP acceptance criteria:</span></summary>  
+
     - MJAI should be able to see the hand of the user at any point during the game
     - MJAI should be able to correctly track other players through audio cues.
     - MJAI should ask for clarification if needed.
@@ -63,21 +71,17 @@ introduction: |
     - MJAI should adjust strategy based on the existing game state (current tiles in hand, tiles played by all players, number of turns left to play in the game)
     - The player should be able to see and interact with the display without disrupting the game.
 
-    ## MVP notes
+    ### MVP notes
     - The vision model will be trained on the specific tile set that I use. 
     - It will be compact enough to run on an edge device.
     - MJAI will track the game state through audio cues (players announce which tiles they are discarding and which they are exposing), and will ask for clarification if it doesn't understand.
     - MJAI will only understand English audio cues.
 
-    ## MVP hardware
-    - MJAI will run off of a Raspberry Pi.
-    - Camera/mic will be through a webcam.
-    - Interface will use a display attached to the Raspberry Pi. 
-
-    ---
-    ## V2 notes
+    ### V2 notes
     - Transform the MVP into a mobile app.
     - Vision model will be trained off of a larger varied dataset of MJ tiles.  
+
+    </details>  
     
     --- 
     ## More about the Coach Agent!
@@ -143,52 +147,132 @@ introduction: |
     ---
     ## Basic Workflow
 
-    - User starts the game workflow with the AI Agent (MJAI)
+    This is designed to work like a real coach sitting next to you: it watches and listens continuously, but it only interrupts when it needs clarification.
 
-    - Charleston (Charleston can be 3 or 6 turns with an optional final exchange):
-        - MJAI views current user's hand + remembers that information
-        - When it is the user's turn, prompt MJAI for advice:
-            - MJAI views current hand (image processing pipeline)
-            - MJAI gives advice on proceeding
-            - repeat for each stage of the Charleston
-            - note: there are no audio cues at this stage
+    ### 0) Setup (before the game)
 
-    - Transition to main game:
-        - Voice prompt or keyboard input to signal the start of the actual game (voice processing pipeline)
+    * Player selects the **NMJL card file** to use (or confirms the default).
+    * Player chooses a lightweight preference (optional): **speed** vs **points**.
+    * MJAI confirms the camera and mic are active, then shows a “ready” status.
+
+    ### 1) Charleston (no audio assumptions)
+
+    During the Charleston, MJAI is primarily a **vision-driven helper**.
+
+    * MJAI continuously reads the player’s hand from the camera feed and maintains a **best-known hand state**.
+    * On the player’s turn, the player taps **“Coach me”** (or uses a hotkey) to request advice.
+
+        * MJAI re-checks the hand.
+        * Strategy engine ranks the top target hands and suggests what to pass/keep.
+        * If the hand read is uncertain (tile flicker, ambiguity), the **Coach Agent** asks a quick confirmation question (for example: “Is this a 3 Bam or 3 Crack?”).
+    * Repeat for each Charleston pass, including the optional final exchange if your group plays it.
+
+    Notes:
+
+    * MJAI does not rely on table audio during Charleston.
+    * Manual correction is always available if the camera read is wrong.
+
+    ### 2) Transition to main play
+
+    When Charleston ends, the player signals that the main game has started.
+
+    * Player taps **“Start Game”** (or uses a voice command / hotkey).
+    * MJAI switches to **vision + audio** mode and resets any Charleston-only assumptions.
     
-    - Main game:
-        - MJAI tracks vocal cues that indicate what tiles other users are discarding or exposing. (voice processing pipeline)
-            - game state recorded to txt file
-        - Voice trigger or keyboard input signals the user's turn and prompts MJAI for strategy advice.  (voice processing pipeline)
-            - MJAI views current hand (image processing pipeline)
-            - Voice/image data processed and results returned to MJAI
-            - MJAI gives advice on proceeding
-            - MJAI will reference all knowledge gathered to date when providing advice.
+    ### 3) Main game loop (continuous sensing + “ask when uncertain”)
 
-    - End of game
-        - Player announces they have won  (voice processing pipeline).
-        - MJAI prompts user if they won/lost.
-        - User indicates whether they won or lost.
-        - MJAI provides final advice for improvement next time.
+    MJAI runs a repeating loop in the background:
+
+    1. **Sense**
+
+      * Vision module updates the player’s current hand state.
+      * Audio module listens for calls/discards and parses game events (for example: “discard 5 dot”, “pung 9 bam”).
+
+    2. **Update state**
+
+      * Game state is updated with:
+
+        * player hand (with confidence)
+        * any known discards/exposures (as available via audio)
+        * turn/phase markers if provided
+        * If MJAI isn’t confident about a detected tile or a parsed call, it creates an **uncertainty event**.
+
+    3. **Coach Agent intervention (only when needed)**
+    
+      * If uncertainty crosses a threshold, MJAI prompts the player with a short question.
+      * The prompt is rate-limited to avoid interrupting gameplay (unless it’s high urgency).
+      * The player can answer via quick buttons (or optional keyboard input).
+      * The system updates state based on the answer and continues.
+
+    4. **Advise on demand**
+
+     * When it becomes the player’s turn, the player taps **"My Turn"** (or uses a voice command / hotkey).
+     * MJAI recomputes:  
+       * Top target hands (ranked)
+       * One discard recommendation aligned to those targets
+       * Short rationale
+     * The LLM narrator rewrites the rationale into friendly coaching text. The underlying recommendation remains deterministic.
+
+    ### 4) End of game + review
+
+    * When a player calls **"Mahjongg!"**, MJAI logs the end state and asks the user to confirm the outcome:
+
+      * **I won**
+      * **I lost**
+    * MJAI provides a short “what I would do next time” reflection:
+
+      * missed opportunities (for example: “you were one tile away from X for 3 turns”)
+      * common confusions (for example: repeated tile ambiguity)
+      * a suggested focus area for the next session (speed, calling strategy, reading the card)
+
+    ---
+
+    ### Manual controls (available at any time)
+
+    * **New Game**
+    * **End Game**
+    * **Resync Hand**
+    * **Advance Turn**
+    * **Correct Tile**
+    * **Mute Coach prompts** (optional: temporarily suppress questions)
+
 
     ---
     ## Risks + Considerations
     - Speed: 
         - MJAI might be slow and interfere with gameplay
             - ensure low-latency processing for real-time interaction
-            - keep models small and edge-device compatible
-    - Accuracy: 
-        - MJAI may hallucinate valid hands: 
-            - use appropriate GPT instructions/reasoning strategy to minimize hallucinations
-            - lean on RAG to reinforce correct card information
-        - MJAI may mis-identify tiles:
-            - use high-accuracy models for reliable object detection and intent recognition
-            - consider keeping transparent recording of audio/visual cues for user
-            - consider manual confirmation/ability to correct by user
-        - MJAI may forget which tiles have been played:
-            - ensure agent memory to track all tiles 'seen' and 'heard' by the AI ('seen' via object detection model and 'heard' via speech-to-text model). 
-            - store tile history in a text file and use RAG (+ describe text file data in GPT instructions for better retrieval)
-    - Security: Implement robust security measures to protect data and user privacy
+            - run a background loop that updates state continuously, but only computes "full advice" when the user requests it
+            - keep vision model small and edge-device compatible
+            - rate-limit Coach Agent prompts so the system asks questions only when it matters
+    - Perception accuracy (camera + mic): 
+        - Tile detection might be wrong or unstable (tiles flicker between labels, overlap, or shift): 
+            - track a confidence score per tile/slot and decay confidence when detections are unstable
+            - provide fast manual correction (tap-to-fix) and a "Resync Hand" control
+            - prefer stable “tile slots” over simple left-to-right sorting as the UI matures
+        - Speech-to-text mishears calls (wrong calls/tile name, background noise):
+            - constrain parsing to a Mahjongg-specific vocabulary and normalize common variations
+            - use the Coach Agent to confirm ambiguous calls instead of silently updating state
+            - provide a quick "undo / correct last event" control
+    - Strategy correctness (don’t make stuff up):
+        - MJAI suggests hands or rules that don’t exist on the selected card, or ignores American Mahjongg constraints (joker rules, exposed vs concealed restrictions, etc.)
+            - only score candidate hands sourced from the user-selected card file 
+            - keep strategy logic deterministic and testable (unit tests for rules + pattern matching)
+            - treat LLM narrator as "wording only" and never allow it to alter the underlying recommendation
+    - Coach Agent behavior (helpful vs annoying)
+        - Coach Agent asks too many questions and becomes distracting
+            - rate-limit prompts (max prompts/minute + minimum spacing)
+            - only interrupt on low confidence or high-impact ambiguity
+            - allow the user to temporarily mute prompts while keeping passive status indicators
+        - Coach Agent asks too few questions and silently proceeds with bad assumptions
+            - escalate urgency when confidence drops below a hard threshold
+            - surface a persistent “Needs confirmation” indicator when unresolved uncertainty exists
+    - Data handling + privacy (post MVP)
+        - Capturing camera/mic data could create privacy concerns at a live table
+            - default to **local-only processing** on the device
+            - avoid uploading audio/video by default; if logs are enabled, store them locally and make them opt-in
+            - be explicit on this page about what is recorded (if anything) and how to disable it
+
 
     ---
     ## Resources
