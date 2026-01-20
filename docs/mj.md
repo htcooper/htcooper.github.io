@@ -31,8 +31,8 @@ introduction: |
     - LLM narrator turns deterministic strategy output into friendly coaching text (it’s not the decision-maker).
 
     ---
-    <details>
-    <summary><strong>Target user personas</strong></summary>  
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">Target user personas</span></summary>  
 
     - New Mahjongg players who are just learning  
     - Intermediate Mahjongg players who want to refine their strategy  
