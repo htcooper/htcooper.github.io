@@ -85,7 +85,7 @@ introduction: |
 
     **Generative AI Projects**
     * **Mahjongg AI Agent** (Azure/OpenAI): Building a real-time strategy agent for edge devices. Focuses on low-latency decision making and multimodal input processing. [Here's the project page](https://htcooper.github.io/mj.html)
-    * **Text summarizer** (Claude Code/Next.js/OpenAI): Created a text summarization tool that lets the user upload a PDF file, and then generates a short summary and extended "more info" bullet points. Uses GPT4o-mini. [Github repo](https://github.com/htcooper/doc-summarizer){:target="_blank"}
+    * **Document summarizer** (Claude Code/Next.js/OpenAI): Created a text summarization tool that lets the user upload a PDF file, and then generates a short summary and extended "more info" bullet points. Uses GPT4o-mini. [Github repo](https://github.com/htcooper/doc-summarizer){:target="_blank"}
     * **Headshot Generator** (Cursor/Claude Code/React/Nano Banana): Developed a professional headshot generator using React and Google Nano Banana API. Built rapidly using Cursor to test AI-assisted coding workflows. [Github repo](https://github.com/htcooper/headshot-generator){:target="_blank"}
     * **Custom GPTs**: I've made a few fun custom GPTs. Try them out here:
         * [Tiki Mixmaster](https://chatgpt.com/g/g-t5VLu7iOo-tiki-mixmaster){:target="_blank"} - your tiki bartending companion
