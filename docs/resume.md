@@ -85,7 +85,7 @@ introduction: |
 
     **Generative AI Projects**
     * Mahjongg AI Agent (Azure/OpenAI): Building a real-time strategy agent for edge devices. Focuses on low-latency decision making and multimodal input processing. [Here's the project page](https://htcooper.github.io/mj.html)
-    * Headshot Generator (Cursor/Claude Code): Developed a professional headshot generator using React and Google Nano Banana API. Built rapidly using Cursor to test AI-assisted coding workflows.
+    * Headshot Generator (Cursor/Claude Code): Developed a professional headshot generator using React and Google Nano Banana API. Built rapidly using Cursor to test AI-assisted coding workflows. [Github repo](https://github.com/htcooper/headshot-generator){:target="_blank"}
     * Custom GPTs: I've made a few fun custom GPTs. Try them out here:
         * [Tiki Mixmaster](https://chatgpt.com/g/g-t5VLu7iOo-tiki-mixmaster){:target="_blank"} - your tiki bartending companion
         * [Podcast Summarizer](https://chatgpt.com/g/g-a1etiLlnY-podcast-summarizer){:target="_blank"} - helps you catch up on all those podcast episodes you've been meaning to listen to
