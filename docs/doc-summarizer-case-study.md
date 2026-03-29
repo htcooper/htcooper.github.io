@@ -7,9 +7,9 @@ introduction: |
     Designing an AI feature from POC to production, with built-in quality measurement.
 
     ---
-    **Status:** POC complete (working app; production roadmap designed)
-    **Stack:** Next.js 14 · TypeScript · OpenAI GPT-4o-mini · shadcn/ui
-    **Code:** [View GitHub](https://github.com/htcooper/doc-summarizer){:target="_blank"}
+    - **Status:** POC complete (working app; production roadmap designed)  
+    - **Stack:** Next.js 14 · TypeScript · OpenAI GPT-4o-mini · shadcn/ui  
+    - **Code:** [View GitHub](https://github.com/htcooper/doc-summarizer){:target="_blank"}
 
     ---
     ## The Problem
@@ -25,15 +25,15 @@ introduction: |
 
     How I think about building AI features:
 
-    **Start with the UX shape, not the model.** The POC proves the interaction pattern (upload, summary, feedback) before adding infrastructure complexity. If the UX pattern doesn't work, the infrastructure doesn't matter.
+    - **Start with the UX shape, not the model.** The POC proves the interaction pattern (upload, summary, feedback) before adding infrastructure complexity. If the UX pattern doesn't work, the infrastructure doesn't matter.
 
-    **Evaluation is part of the product.** The feedback widget in the POC is the foundation of the quality measurement framework. Without it, there's no way to know if summaries are actually helping users.
+    - **Evaluation is part of the product.** The feedback widget in the POC is the foundation of the quality measurement framework. Without it, there's no way to know if summaries are actually helping users.
 
-    **Sequence around risk.** Make the async pipeline reliable first, then add auth and cost controls, then expand to more file types. Don't introduce OCR failure modes before you can debug basic pipeline failures.
+    - **Sequence around risk.** Make the async pipeline reliable first, then add auth and cost controls, then expand to more file types. Don't introduce OCR failure modes before you can debug basic pipeline failures.
 
-    **Trust and control go hand-in-hand.** Regenerate and manual override exist because users need control over AI output, especially in domains where accuracy matters for compliance or regulatory reasons. The number of manual overrides also becomes a proxy metric for quality.
+    - **Trust and control go hand-in-hand.** Regenerate and manual override exist because users need control over AI output, especially in domains where accuracy matters for compliance or regulatory reasons. The number of manual overrides also becomes a proxy metric for quality.
 
-    **Single provider is an intentional bet.** MVP uses one LLM provider (OpenAI). The interface supports future routing, but the complexity tax isn't paid until there's a reason: cost pressure, reliability issues, or a capability gap.
+    - **Single provider is an intentional bet.** MVP uses one LLM provider (OpenAI). The interface supports future routing, but the complexity tax isn't paid until there's a reason: cost pressure, reliability issues, or a capability gap.
 
     ---
     ## What I Built
