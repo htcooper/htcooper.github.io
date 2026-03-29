@@ -41,7 +41,7 @@ introduction: |
     The POC is intentionally minimal. It validates the core UX pattern and prompt quality before adding infrastructure complexity.
 
     <video autoplay loop muted playsinline>
-      <source src="/docs/assets/videos/doc-summarizer-demo.mp4" type="video/mp4">
+      <source src="assets/videos/doc-summarizer-demo.mp4" type="video/mp4">
     </video>
 
     - **Upload:** drag-and-drop with client-side validation (PDF only, 50MB max). PDF-only because it's the most common attachment type; multi-format support is an MVP expansion.
