@@ -134,6 +134,7 @@ introduction: |
     The POC is synchronous: the user waits while the API processes. Production needs to handle timeouts, retries, and long documents gracefully.
 
     - **Async job queue:** Supabase (chosen for built-in RLS, auth, and Postgres, giving one service for persistence and access control) creates a job row on upload. An AWS Lambda worker (serverless, scales to zero when idle, no infra to manage) processes jobs and writes results back.
+    - **Summary persistence:** summaries are stored in Supabase and served from the database on subsequent views, not regenerated. This eliminates redundant API calls, reduces cost, and makes summaries available instantly across sessions.
     - **Run telemetry from day 1:** every summarization run logs the model, token count, latency, and errors to Supabase. This is non-negotiable. Without it, quality and cost issues are invisible.
     - **Feature flags:** enable or disable summarization without breaking existing upload flows. This is both a launch mechanism and a rollback mechanism.
 
@@ -172,6 +173,16 @@ introduction: |
     </details>
 
     ---
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">Phase 5: Future work</span></summary>
+
+    - **Graph database for document relationships:** once summaries are persisted, they become a foundation for understanding relationships between documents. A graph database (e.g., Neo4j) can store semantic similarity edges between documents based on their summary embeddings.
+    - **Related document suggestions:** when a user attaches a document to a project, the system suggests other documents with semantically similar content. This turns summaries from a passive feature (read and move on) into an active discovery tool.
+    - **Embedding pipeline:** summaries are embedded at generation time and stored as vectors. Similarity is computed against the existing corpus, and relationships above a confidence threshold are written as edges in the graph. This runs asynchronously alongside summarization, reusing the same job queue infrastructure from Phase 1.
+
+    </details>
+
+    ---
     ## Architecture
 
     ### POC (what exists today)
@@ -199,7 +210,7 @@ introduction: |
     Feature flags. Run telemetry. Monitoring dashboards.
     ```
 
-    The POC proves the UX pattern works. The production architecture makes it reliable, secure, and observable at scale.
+    The POC proves the UX pattern works. The production architecture makes it reliable, secure, and observable at scale. A key shift: summaries move from ephemeral (generated on every request, lost on refresh) to persistent (stored in Supabase, served instantly on subsequent views).
 
     ---
     ## Key Technical Decisions
