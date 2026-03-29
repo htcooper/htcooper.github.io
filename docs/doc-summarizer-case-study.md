@@ -126,7 +126,8 @@ introduction: |
 
     The roadmap is sequenced around risk, not features. Each phase builds on the reliability and observability of the previous one.
 
-    ### Phase 1: Make the pipeline reliable
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">Phase 1: Make the pipeline reliable</span></summary>
 
     The POC is synchronous: the user waits while the API processes. Production needs to handle timeouts, retries, and long documents gracefully.
 
@@ -134,19 +135,31 @@ introduction: |
     - **Run telemetry from day 1:** every summarization run logs the model, token count, latency, and errors to Supabase. This is non-negotiable. Without it, quality and cost issues are invisible.
     - **Feature flags:** enable or disable summarization without breaking existing upload flows. This is both a launch mechanism and a rollback mechanism.
 
-    ### Phase 2: Add trust and access control
+    </details>
+
+    ---
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">Phase 2: Add trust and access control</span></summary>
 
     - **Supabase Auth + RLS (row-level security):** owner-only access by default. RLS is chosen over application-level permission checks because access control lives in the database layer, not scattered across API routes. A user cannot read another user's summaries, enforced at the query level.
     - **Status-driven UX:** the summary card reflects real job states (queued, processing, succeeded, failed) pulled from the database, not local ephemeral state.
     - **Integration and E2E tests** before expanding scope. The pipeline must be proven reliable before adding more complexity.
 
-    ### Phase 3: Expand capabilities
+    </details>
+
+    ---
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">Phase 3: Expand capabilities</span></summary>
 
     - **Multi-format support:** .txt, .md, .docx in addition to PDF.
     - **OCR for scanned PDFs:** this comes after monitoring exists because OCR adds both cost and new failure modes that need the observability from Phase 1.
     - **Custom summary replacement + regenerate:** users can write their own summary (replacing the AI version) or regenerate a new AI summary. Both are trust mechanisms that give users control. Replacement rate also feeds back into quality measurement.
 
-    ### Phase 4: Production and observability
+    </details>
+
+    ---
+    <details markdown="1">
+    <summary><span style="font-size: 1.35rem; font-weight: 700;">Phase 4: Production and observability</span></summary>
 
     - **Phased rollout via feature flags:** gradually release to increasing user segments based on stability metrics. Feature flags are used for launch and as the rollback mechanism.
     - **Vercel for hosting:** zero-config Next.js deployment with preview environments per PR.
@@ -154,16 +167,18 @@ introduction: |
     - **Automated alerts:** spend spikes, error-rate thresholds, queue backlog, timeout surges, with runbooks for each scenario.
     - **Optimization based on production data:** tune chunking, prompts, and retry strategies using real telemetry. Reduce cost without quality loss.
 
+    </details>
+
     ---
     ## Architecture
 
     ### POC (what exists today)
 
     ```
-    Browser
+    File Browser UI
       → Next.js /api/upload (pdf-parse extracts text)
         → Next.js /api/summarize (OpenAI GPT-4o-mini)
-          → Browser
+          → Summary Card (display + feedback widget)
 
     Synchronous. In-memory. No persistence.
     ```
@@ -171,13 +186,13 @@ introduction: |
     ### Production (designed)
 
     ```
-    Browser
+    File Browser UI
       → Next.js on Vercel (zero-config deploys, preview environments)
         → Supabase (Postgres + RLS + Auth: persistence, access control, job queue)
           → AWS Lambda (serverless async worker: extraction + summarization + retry)
             → Supabase (results + run telemetry)
               → Next.js (polling for status updates)
-                → Browser
+                → Summary Card (display + feedback widget)
 
     Feature flags. Run telemetry. Monitoring dashboards.
     ```
