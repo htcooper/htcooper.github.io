@@ -40,7 +40,7 @@ introduction: |
 
     The POC is intentionally minimal. It validates the core UX pattern and prompt quality before adding infrastructure complexity.
 
-    <video autoplay loop muted playsinline>
+    <video autoplay loop muted playsinline width="100%">
       <source src="assets/videos/doc-summarizer-demo.mp4" type="video/mp4">
     </video>
 
