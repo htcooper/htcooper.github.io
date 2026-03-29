@@ -40,7 +40,9 @@ introduction: |
 
     The POC is intentionally minimal. It validates the core UX pattern and prompt quality before adding infrastructure complexity.
 
-    ![Summary view](/assets/images/doc-summarizer-screenshot.png)
+    <video autoplay loop muted playsinline>
+      <source src="/docs/assets/videos/doc-summarizer-demo.mp4" type="video/mp4">
+    </video>
 
     - **Upload:** drag-and-drop with client-side validation (PDF only, 50MB max). PDF-only because it's the most common attachment type; multi-format support is an MVP expansion.
     - **Text extraction:** pdf-parse extracts text with error discrimination. Corrupt files, password-protected PDFs, and image-only PDFs each return a distinct error message with a clear next step for the user. No technical jargon is exposed.
