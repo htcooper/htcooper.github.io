@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="path-depth" content="1">
+  <title>Zero-Cost Public Roadmap | Hollis Cooper — AI + Data PM</title>
+  <meta name="description" content="Replacing a deprecated vendor tool in under a day using Claude Code. Zero budget, brand-compliant, built on existing tools.">
+  <link rel="canonical" href="https://htcooper.github.io/work/roadmap.html">
+  <meta property="og:title" content="Zero-Cost Public Roadmap | Hollis Cooper">
+  <meta property="og:description" content="Replacing a deprecated vendor tool in under a day using Claude Code.">
+  <meta property="og:url" content="https://htcooper.github.io/work/roadmap.html">
+  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/roadmap/roadmap-ss.png">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Sans+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="case-study">
+  <div class="container">
+
+    <!-- Header -->
+    <header class="case-study__header">
+      <h1 class="case-study__title">Zero-Cost Public Roadmap</h1>
+      <p class="case-study__subtitle">Replacing a deprecated vendor tool in under a day using Claude Code.</p>
+      <div class="case-study__meta">
+        <span class="tag tag--status tag--complete">Complete</span>
+        <span class="tag">Claude Code</span>
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">Google Sheets</span>
+        <span class="tag">0→1</span>
+      </div>
+      <p class="mt-16 text-secondary">
+        <strong>Stack:</strong> Claude Code · Google Sheets · HTML/CSS/JS · GitHub Pages<br>
+        <strong>Timeline:</strong> Idea to production in &lt;1 day
+      </p>
+    </header>
+
+    <hr>
+
+    <!-- Screenshot -->
+    <div class="video-container">
+      <img src="../assets/images/work/roadmap/roadmap-ss.png" alt="Screenshot of the Blackthorn public roadmap" style="width: 100%; display: block;">
+    </div>
+
+    <hr>
+
+    <!-- The Problem -->
+    <h2>The Problem</h2>
+    <p>The product team was changing our customer feedback platform. The new solution did not include public roadmap functionality. The company had always maintained a public roadmap that was heavily used as a reference by sales, customer success, and support teams.</p>
+    <p>The previous solution had multiple problems:</p>
+    <ul>
+      <li>It was not brand-compliant</li>
+      <li>It didn't iframe well on our site, so team members would often share the direct vendor URL instead of the official company URL</li>
+      <li>Updating it created friction because it required a significant context switch for product team members</li>
+    </ul>
+
+    <hr>
+
+    <!-- The Constraint -->
+    <h2>The Requirements</h2>
+    <p>Any replacement needed to meet all of the following:</p>
+    <ul>
+      <li>Easily editable and publishable by anyone on the product team</li>
+      <li>Brand-compliant look and feel</li>
+      <li>Work well on mobile devices</li>
+      <li>Correctly iframe on a Salesforce Community site</li>
+      <li>Zero additional cost</li>
+    </ul>
+    <p>The obvious options were to procure a new SaaS tool (cost + procurement time) or request an internal engineering build (time + capacity). Both had tradeoffs. I saw an opportunity to solve it myself.</p>
+
+    <hr>
+
+    <!-- What I Did -->
+    <h2>What I Did</h2>
+    <p>I took the initiative to build a solution myself using Claude Code, leveraging existing tools and processes to reduce friction for the product team.</p>
+    <ul>
+      <li><strong>Data source:</strong> Built the solution to run entirely off a Google Sheet accessible to the entire product team. No new tools, no context switching.</li>
+      <li><strong>Brand alignment:</strong> Gave Claude Code our brand guidelines and it created a page template in alignment with our brand, while keeping the same mental model as the original public roadmap</li>
+      <li><strong>Iframe solution:</strong> Had Claude Code generate a solution for iframing that could communicate with the outer window to correctly render the content on our Salesforce Community site</li>
+      <li><strong>Automation:</strong> Google Sheets data is automatically pulled into brand-compliant HTML published via GitHub Pages</li>
+    </ul>
+    <p>Total time from idea to deployed solution: less than one day.</p>
+
+    <hr>
+
+    <!-- The Result -->
+    <h2>The Result</h2>
+    <p>The final solution was a success praised by leadership:</p>
+    <ul>
+      <li>Scrolling and iframe issues were fixed, making it easier to share the "official" URL with customers</li>
+      <li>The product team didn't have to go outside of existing tools to work on the roadmap</li>
+      <li>The roadmap was now brand-compliant</li>
+      <li>Eliminated the cost of finding and procuring a new third-party solution</li>
+    </ul>
+
+    <hr>
+
+    <!-- What I Learned -->
+    <h2>What I Learned</h2>
+    <p><strong>AI-assisted coding is a product tool, not just a dev tool.</strong> The value here wasn't writing code faster. It was eliminating the procurement process entirely. A PM who can vibe-code a solution in hours changes the decision calculus for the team: instead of "should we buy or build?", the question becomes "can we validate this ourselves before committing resources?"</p>
+    <p><strong>The best solution isn't always the most technical one.</strong> A Google Sheet + static HTML + GitHub Pages is not a sophisticated stack. But it met every requirement, cost nothing, and the product team could maintain it without any engineering support. Simplicity was the feature.</p>
+    <p><strong>Know when vibe-coding is the right tool.</strong> This worked because the scope was narrow, the requirements were clear, and the solution didn't need to scale beyond a single page. For a multi-page app with auth and database needs, the approach would be different. The judgment call is knowing which problems fit.</p>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/nav.js"></script>
+</body>
+</html>

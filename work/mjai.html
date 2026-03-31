@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="path-depth" content="1">
+  <title>MJAI — Mahjongg AI Coach | Hollis Cooper — AI + Data PM</title>
+  <meta name="description" content="Building a real-time AI coaching system for American Mahjongg using computer vision, agentic AI, and edge computing.">
+  <link rel="canonical" href="https://htcooper.github.io/work/mjai.html">
+  <meta property="og:title" content="MJAI — Mahjongg AI Coach | Hollis Cooper">
+  <meta property="og:description" content="Building a real-time AI coaching system for American Mahjongg using computer vision, agentic AI, and edge computing.">
+  <meta property="og:url" content="https://htcooper.github.io/work/mjai.html">
+  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/mjai/vision-ss1.png">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Sans+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="case-study">
+  <div class="container">
+
+    <!-- Header -->
+    <header class="case-study__header">
+      <h1 class="case-study__title">MJAI — Mahjongg AI Coach</h1>
+      <p class="case-study__subtitle">Building a real-time AI coaching system for a game with imperfect information.</p>
+      <div class="case-study__meta">
+        <span class="tag tag--status tag--in-progress">In Progress</span>
+        <span class="tag">Computer Vision</span>
+        <span class="tag">Python</span>
+        <span class="tag">Agentic AI</span>
+      </div>
+      <p class="mt-16 text-secondary">
+        <strong>Status as of April 2026:</strong> Vision model trained. Coach agent + UI in development.<br>
+        <strong>Runs on:</strong> Raspberry Pi + webcam/mic<br>
+        <strong>Inputs:</strong> tiles + calls<br>
+        <strong>Outputs:</strong> top 3 targets + discard recommendation + clarifying questions
+      </p>
+    </header>
+
+    <hr>
+
+    <div class="video-container" style="max-width: 560px;">
+      <img src="../assets/images/work/mjai/vision-ss1.png" alt="MJAI vision model detecting Mahjongg tiles in real time" style="width: 100%; display: block;">
+    </div>
+    <p class="text-center text-secondary" style="font-size: 0.85rem; margin-top: 8px;">Vision model testing</p>
+
+    <hr>
+
+    <!-- The Problem -->
+    <h2>The Problem</h2>
+    <p>Mahjongg is a game of strategy and luck. I enjoy playing, but I'm slow. I spend a lot of time reading the card and watching what others are doing. There are strategic decisions that have to be made each turn, so I wanted to create something to help me get faster at knowing roughly what I should do next.</p>
+    <p>For me, MJAI stands in as a skilled player giving me advice. Ideally, I won't need this assistant as much the more that I play.</p>
+    <p>This project is built as an uncertainty-driven "coach agent": when the system isn't sure what it saw or heard (or when two strategic options are neck-and-neck), it proactively asks a quick clarifying question instead of silently guessing.</p>
+
+    <hr>
+
+    <!-- Why It's Hard -->
+    <h2>Why It's Hard</h2>
+    <ul>
+      <li><strong>Tile recognition variance:</strong> Mahjongg tiles are small, can overlap, shift during play, and lighting conditions change at every table. The vision model needs to reliably classify 43 tile classes under real-world conditions.</li>
+      <li><strong>Real-time constraint:</strong> The system has to keep up with the pace of a live game. Processing has to be fast enough to run on an edge device without interfering with gameplay.</li>
+      <li><strong>Imperfect information:</strong> Unlike chess, you can't see the full game state. Strategy depends on partial information: your hand, what's been discarded, what's been exposed by other players, and what you can infer from audio cues.</li>
+      <li><strong>Audio parsing:</strong> Players announce discards and calls out loud. Speech-to-text has to handle Mahjongg-specific vocabulary, background noise, and overlapping conversation.</li>
+      <li><strong>Balancing helpfulness and interruption:</strong> A coach that asks too many questions is annoying. One that silently guesses wrong is worse. Finding the right threshold for when to ask is a core design challenge.</li>
+    </ul>
+
+    <hr>
+
+    <!-- What It Does -->
+    <h2>What It Does</h2>
+    <ul>
+      <li>Computer vision detects and classifies tiles from a webcam feed (43 classes)</li>
+      <li>Audio + speech-to-text transcribes table calls and parses tile names/calls (like "mahjongg!")</li>
+      <li>Strategy engine scores candidate hands (from a Mahjongg card JSON) and returns the top targets + a discard suggestion</li>
+      <li>Coach agent detects ambiguity and prompts for confirmation when confidence is low</li>
+      <li>LLM narrator turns deterministic strategy output into friendly coaching text (it's not the decision-maker)</li>
+    </ul>
+
+    <hr>
+
+    <!-- System Architecture -->
+    <h2>System Architecture</h2>
+
+    <h3>Codebase Modules</h3>
+    <ul>
+      <li><strong>Vision:</strong> TensorFlow model inference from an Azure Custom Vision export. Recognizes 43 tile classes and maps labels into internal Tile objects.</li>
+      <li><strong>Audio:</strong> Captures audio chunks and transcribes with Whisper. Parses calls + tile names with a Mahjongg-aware normalization step.</li>
+      <li><strong>Game State:</strong> Tracks the best-known current hand, discards/calls, and a confidence level.</li>
+      <li><strong>Strategy Engine:</strong> Scores candidate hands, returns top targets, and generates discard advice. Supports a preference signal like "speed" vs "points" (used in sorting).</li>
+      <li><strong>Coach Agent:</strong> Produces uncertainty events, generates short questions, and processes answers. Integrates with the orchestrator and UI (distinct "coach question" widget).</li>
+      <li><strong>Orchestrator:</strong> Coordinates all modules, runs the main processing loop, and routes events. The processing loop pulls detections, updates state, runs strategy, updates UI, and decays confidence.</li>
+    </ul>
+
+    <h3>Processing Flow</h3>
+    <pre><code>Webcam → Vision Model (43 tile classes)
+                ↓
+Microphone → Whisper STT → Call Parser
+                ↓
+        Game State Tracker
+                ↓
+        Strategy Engine (card-aware scoring)
+                ↓
+        Coach Agent (uncertainty detection)
+                ↓
+        UI: hand, targets, discard, coach prompts</code></pre>
+
+    <hr>
+
+    <!-- The Coach Agent -->
+    <h2>The Coach Agent</h2>
+    <p>Most systems in this space either silently guess when inputs are messy, or constantly ask you to confirm everything. I'm aiming for a middle path: ask only when it matters.</p>
+
+    <h3>What the coach detects</h3>
+    <p>The coach watches for uncertainty across vision, audio, and strategy:</p>
+    <ul>
+      <li>Ambiguous tile: "I'm seeing either 3 Bam or 3 Crack in slot 9."</li>
+      <li>Unstable detection: a tile keeps flipping across frames.</li>
+      <li>Ambiguous call: "Did you say pung or kong?"</li>
+      <li>Close hand scores: "Two hands are close: Hand A vs Hand B."</li>
+    </ul>
+
+    <h3>Decision logic</h3>
+    <ul>
+      <li><strong>High confidence (&gt;0.9):</strong> auto-proceed, no question</li>
+      <li><strong>Medium (0.6–0.9):</strong> ask if not rate-limited</li>
+      <li><strong>Low (&lt;0.6):</strong> always ask, increase urgency</li>
+    </ul>
+
+    <h3>Rate limiting</h3>
+    <p>So the coach doesn't become annoying:</p>
+    <ul>
+      <li>Max 3 prompts per minute</li>
+      <li>Minimum 5 seconds between prompts</li>
+      <li>High-urgency events can bypass limits</li>
+    </ul>
+
+    <hr>
+
+    <!-- Workflow -->
+    <h2>Game Workflow</h2>
+    <p>Designed to work like a real coach sitting next to you: it watches and listens continuously, but only interrupts when it needs clarification.</p>
+
+    <details>
+      <summary>0) Setup (before the game)</summary>
+      <ul>
+        <li>Player selects the NMJL card file to use (or confirms the default)</li>
+        <li>Player chooses a lightweight preference (optional): speed vs points</li>
+        <li>MJAI confirms the camera and mic are active, then shows a "ready" status</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>1) Charleston (vision-only)</summary>
+      <p>During the Charleston, MJAI is primarily a vision-driven helper. It continuously reads the player's hand from the camera feed and maintains a best-known hand state. On the player's turn, the player taps "Coach me" (or uses a hotkey) to request advice. MJAI re-checks the hand, ranks the top target hands, and suggests what to pass/keep. If the hand read is uncertain, the Coach Agent asks a quick confirmation question.</p>
+    </details>
+
+    <details>
+      <summary>2) Transition to main play</summary>
+      <p>When Charleston ends, the player taps "Start Game" (or uses a voice command). MJAI switches to vision + audio mode and resets any Charleston-only assumptions.</p>
+    </details>
+
+    <details>
+      <summary>3) Main game loop</summary>
+      <p>MJAI runs a repeating loop in the background:</p>
+      <ol>
+        <li><strong>Sense:</strong> Vision module updates the player's hand. Audio module listens for calls/discards and parses game events.</li>
+        <li><strong>Update state:</strong> Game state is updated with the player's hand (with confidence), known discards/exposures, and turn/phase markers. If MJAI isn't confident about a detected tile or call, it creates an uncertainty event.</li>
+        <li><strong>Coach intervention (only when needed):</strong> If uncertainty crosses a threshold, MJAI prompts the player. The player can answer via quick buttons. The system updates state and continues.</li>
+        <li><strong>Advise on demand:</strong> When the player taps "My Turn", MJAI computes top target hands, one discard recommendation, and a short rationale. The LLM narrator rewrites the rationale into friendly coaching text.</li>
+      </ol>
+    </details>
+
+    <details>
+      <summary>4) End of game + review</summary>
+      <p>When a player calls "Mahjongg!", MJAI logs the end state and asks the user to confirm the outcome (won or lost). MJAI then provides a short reflection: missed opportunities, common confusions, and a suggested focus area for the next session.</p>
+    </details>
+
+    <hr>
+
+    <!-- UI -->
+    <h2>UI</h2>
+    <p>Designed for an 800×480 Raspberry Pi touchscreen. Core UI areas:</p>
+    <ul>
+      <li>Current hand</li>
+      <li>Top target hands (ranked)</li>
+      <li>Discard recommendation</li>
+      <li>Status + confidence indicator</li>
+      <li>Coach prompt area (when needed)</li>
+    </ul>
+
+    <h3>Manual controls (available at any time)</h3>
+    <p>Real-world inputs are messy, so the system is built to degrade gracefully and let you override:</p>
+    <ul>
+      <li>New Game / End Game</li>
+      <li>Resync Hand</li>
+      <li>Advance Turn</li>
+      <li>Correct Tile</li>
+      <li>Mute Coach prompts</li>
+    </ul>
+
+    <hr>
+
+    <!-- Product Thinking -->
+    <h2>Product Thinking</h2>
+
+    <details>
+      <summary>Target user personas</summary>
+      <ul>
+        <li>New Mahjongg players who are just learning</li>
+        <li>Intermediate Mahjongg players who want to refine their strategy</li>
+        <li>Anti-personas: advanced players, competition players</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>MVP acceptance criteria</summary>
+      <ul>
+        <li>MJAI can see the hand of the user at any point during the game</li>
+        <li>MJAI can correctly track other players through audio cues</li>
+        <li>MJAI asks for clarification if needed</li>
+        <li>MJAI provides strategy when asked</li>
+        <li>MJAI does not hallucinate hands or strategy</li>
+        <li>MJAI bases its strategy only off the specific card that the user has indicated</li>
+        <li>MJAI adjusts strategy based on the existing game state</li>
+        <li>The player can see and interact with the display without disrupting the game</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Risks + mitigations</summary>
+      <ul>
+        <li><strong>Speed:</strong> Keep vision model small and edge-device compatible. Run a background loop that updates state continuously, but only compute "full advice" when the user requests it. Rate-limit Coach Agent prompts.</li>
+        <li><strong>Perception accuracy:</strong> Track confidence per tile/slot and decay when detections are unstable. Provide fast manual correction (tap-to-fix) and "Resync Hand" control. Constrain audio parsing to a Mahjongg-specific vocabulary.</li>
+        <li><strong>Strategy correctness:</strong> Only score hands from the user-selected card file. Keep strategy logic deterministic and testable. Treat the LLM narrator as "wording only" and never allow it to alter the underlying recommendation.</li>
+        <li><strong>Coach behavior:</strong> Rate-limit prompts. Only interrupt on low confidence or high-impact ambiguity. Allow the user to temporarily mute prompts. Surface a persistent "Needs confirmation" indicator when unresolved uncertainty exists.</li>
+      </ul>
+    </details>
+
+    <hr>
+
+    <!-- What's Next -->
+    <h2>What's Next</h2>
+    <ul>
+      <li>Complete the coach agent integration with the strategy engine</li>
+      <li>Build and test the Raspberry Pi touchscreen UI</li>
+      <li>End-to-end testing with live gameplay</li>
+      <li>V2: transform the MVP into a mobile app with a more broadly trained vision model</li>
+    </ul>
+
+    <hr>
+
+    <!-- Resources -->
+    <h2>Resources</h2>
+    <p><a href="https://github.com/htcooper/mahjongg-ai-tutor" target="_blank" rel="noopener">RT Object Detection app (vision model testing) on GitHub →</a></p>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/nav.js"></script>
+</body>
+</html>

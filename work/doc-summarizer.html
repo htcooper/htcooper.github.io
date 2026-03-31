@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="path-depth" content="1">
+  <title>AI Document Summarizer | Hollis Cooper — AI + Data PM</title>
+  <meta name="description" content="Designing an AI feature from POC to production, with built-in quality measurement. Next.js, TypeScript, OpenAI GPT-4o-mini.">
+  <link rel="canonical" href="https://htcooper.github.io/work/doc-summarizer.html">
+  <meta property="og:title" content="AI Document Summarizer | Hollis Cooper">
+  <meta property="og:description" content="Designing an AI feature from POC to production, with built-in quality measurement.">
+  <meta property="og:url" content="https://htcooper.github.io/work/doc-summarizer.html">
+  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/doc-summarizer/doc-summarizer-screenshot.png">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Sans+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="case-study">
+  <div class="container">
+
+    <!-- Header -->
+    <header class="case-study__header">
+      <h1 class="case-study__title">AI Document Summarizer</h1>
+      <p class="case-study__subtitle">Designing an AI feature from POC to production, with built-in quality measurement.</p>
+      <div class="case-study__meta">
+        <span class="tag tag--status tag--complete">Complete</span>
+        <span class="tag">LLM</span>
+        <span class="tag">Next.js</span>
+        <span class="tag">TypeScript</span>
+        <span class="tag">OpenAI API</span>
+      </div>
+      <p class="mt-16 text-secondary">
+        <strong>Stack:</strong> Next.js 14 · TypeScript · OpenAI GPT-4o-mini · shadcn/ui<br>
+        <strong>Code:</strong> <a href="https://github.com/htcooper/doc-summarizer" target="_blank" rel="noopener">View on GitHub</a>
+      </p>
+    </header>
+
+    <hr>
+
+    <!-- The Problem -->
+    <h2>The Problem</h2>
+    <p>Users of learning management systems and document platforms upload dozens of files (lecture notes, worksheets, reports, scanned pages) and the only way to understand what each file contains is to open it one by one. In edtech, an educator might have 30 attachments in a single course module with no way to scan their content at a glance.</p>
+    <p>Alternatives like keyword extraction, tagging, or full-text search still require the user to interpret raw data. Summaries give an instant "should I care?" signal. They reduce cognitive load as well as improve findability.</p>
+    <p>The strategy: a narrow wedge. Summaries are generated automatically right after upload and shown inline wherever files appear. Immediate value with minimal user behavior change.</p>
+
+    <hr>
+
+    <!-- My Approach -->
+    <h2>My Approach</h2>
+    <p>How I think about building AI features:</p>
+    <ul>
+      <li><strong>Start with the UX shape, not the model.</strong> The POC proves the interaction pattern (upload, summary, feedback) before adding infrastructure complexity. If the UX pattern doesn't work, the infrastructure doesn't matter.</li>
+      <li><strong>Evaluation is part of the product.</strong> The feedback widget in the POC is the foundation of the quality measurement framework. Without it, there's no way to know if summaries are actually helping users.</li>
+      <li><strong>Sequence around risk.</strong> Make the async pipeline reliable first, then add auth and cost controls, then expand to more file types. Don't introduce OCR failure modes before you can debug basic pipeline failures.</li>
+      <li><strong>Trust and control go hand-in-hand.</strong> Regenerate and manual override exist because users need control over AI output, especially in domains where accuracy matters for compliance or regulatory reasons. The number of manual overrides also becomes a proxy metric for quality.</li>
+      <li><strong>Single provider is an intentional bet.</strong> MVP uses one LLM provider (OpenAI). The interface supports future routing, but the complexity tax isn't paid until there's a reason: cost pressure, reliability issues, or a capability gap.</li>
+    </ul>
+
+    <hr>
+
+    <!-- What I Built -->
+    <h2>What I Built</h2>
+    <p>The POC is intentionally minimal. It validates the core UX pattern and prompt quality before adding infrastructure complexity.</p>
+
+    <div class="video-container">
+      <video autoplay loop muted playsinline aria-label="Demo of the AI Document Summarizer uploading a PDF and generating a summary">
+        <source src="../assets/videos/doc-summarizer-demo.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <ul>
+      <li><strong>Upload:</strong> drag-and-drop with client-side validation (PDF only, 50MB max). PDF-only because it's the most common attachment type; multi-format support is an MVP expansion.</li>
+      <li><strong>Text extraction:</strong> pdf-parse extracts text with error discrimination. Corrupt files, password-protected PDFs, and image-only PDFs each return a distinct error message with a clear next step for the user. No technical jargon is exposed.</li>
+      <li><strong>Summarization:</strong> two parallel OpenAI calls generate an 8-word headline and 3 bullet points simultaneously. The 8-word limit forces concise, scannable summaries that stay visually compact across different UI contexts. The 3-bullet expansion gives enough detail without overwhelming.</li>
+      <li><strong>Centralized prompts:</strong> all AI behavior lives in a single file. Prompts are tunable without touching application code. Text is truncated at 15,000 characters as a pragmatic token budget control.</li>
+      <li><strong>Feedback collection:</strong> thumbs up/down inline with an optional comment field on negative feedback. Starting the feedback flywheel early is critical for AI features; it's how you build the data to improve prompt quality over time.</li>
+      <li><strong>Error handling:</strong> every error returns a human-readable message AND a suggested next step. Rate limits, timeouts, invalid API keys, and corrupt files each have tailored copy. Technical details are logged server-side, never shown to users.</li>
+      <li><strong>Cancellation:</strong> users can cancel in-flight summarization. Better UX when the wrong file is uploaded, and it avoids unnecessary token spend.</li>
+    </ul>
+
+    <h3>POC Data Flow</h3>
+    <pre><code>Upload (drag-and-drop)
+  → /api/upload (pdf-parse extracts text)
+    → /api/summarize (parallel OpenAI calls: headline + bullets)
+      → Summary Card (display + feedback widget)</code></pre>
+
+    <hr>
+
+    <!-- How I Would Measure Success -->
+    <h2>How I Would Measure Success</h2>
+    <p>These are the success criteria and measurement framework I designed for this feature. The metrics are pre-launch targets; the framework is designed to validate or adjust them with real usage data.</p>
+
+    <details>
+      <summary>Primary metric</summary>
+      <p><strong>&gt;70% positive feedback</strong> (thumbs up) on summaries that receive feedback.</p>
+    </details>
+
+    <details>
+      <summary>Engagement check (the metric about the metric)</summary>
+      <p>If fewer than 5% of users give any feedback, the primary metric isn't meaningful yet. Before trusting the quality signal, A/B test the feedback UX: inline prompts, timing, placement. This is also where proxy metrics become essential.</p>
+    </details>
+
+    <details>
+      <summary>Proxy metrics (no explicit feedback required)</summary>
+      <ul>
+        <li><strong>Manual summary replacement rate.</strong> When users replace an AI summary with their own text, that's a direct quality signal. High replacement rates indicate the AI output isn't meeting user expectations.</li>
+        <li><strong>Session pattern analysis.</strong> If a user opens an attached file and returns to the app within 10 seconds, the file likely wasn't relevant, which may indicate a misleading summary. If they stay away for 2+ minutes, they're probably reading it, meaning the summary led them to the right content.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Quality management framework</summary>
+      <ul>
+        <li><strong>Regression set:</strong> 20 representative documents (short, long, technical, non-technical) evaluated after each prompt change</li>
+        <li><strong>Human rubric:</strong> scored 1-5 on four dimensions: correctness, coverage, specificity, tone</li>
+        <li><strong>Prompt versioning:</strong> changes can be A/B tested behind feature flags and rolled back if quality drops</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Failure acceptance</summary>
+      <p>Not all failures are equal. A failed summarization that surfaces a clear error message and retry option is acceptable because the user knows what happened and what to do. A silently wrong summary is not acceptable because it erodes trust without the user knowing.</p>
+    </details>
+
+    <details>
+      <summary>Cost model</summary>
+      <p>Rough estimates (prices subject to change with provider pricing updates):</p>
+      <ul>
+        <li>GPT-4o-mini input: ~$0.15 / 1M tokens</li>
+        <li>Avg tokens per summary pair: ~2,000</li>
+        <li>Cost per summary: ~$0.0003</li>
+        <li>10K summaries / month: ~$3 / month</li>
+      </ul>
+      <p>OCR and multi-format parsing add cost. Cost-per-summary is tracked as a production metric alongside quality; the goal is to optimize without quality loss.</p>
+    </details>
+
+    <hr>
+
+    <!-- Production Roadmap -->
+    <h2>Production Roadmap</h2>
+    <p>The roadmap is sequenced around risk, not features. Each phase builds on the reliability and observability of the previous one.</p>
+
+    <details>
+      <summary>Phase 1: Make the pipeline reliable</summary>
+      <p>The POC is synchronous: the user waits while the API processes. Production needs to handle timeouts, retries, and long documents gracefully.</p>
+      <ul>
+        <li><strong>Async job queue:</strong> Supabase (chosen for built-in RLS, auth, and Postgres, giving one service for persistence and access control) creates a job row on upload. An AWS Lambda worker (serverless, scales to zero when idle, no infra to manage) processes jobs and writes results back.</li>
+        <li><strong>Summary persistence:</strong> summaries are stored in Supabase and served from the database on subsequent views, not regenerated. This eliminates redundant API calls, reduces cost, and makes summaries available instantly across sessions.</li>
+        <li><strong>Run telemetry from day 1:</strong> every summarization run logs the model, token count, latency, and errors to Supabase. This is non-negotiable. Without it, quality and cost issues are invisible.</li>
+        <li><strong>Feature flags:</strong> enable or disable summarization without breaking existing upload flows. This is both a launch mechanism and a rollback mechanism.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Phase 2: Add trust and access control</summary>
+      <ul>
+        <li><strong>Supabase Auth + RLS (row-level security):</strong> owner-only access by default. RLS is chosen over application-level permission checks because access control lives in the database layer, not scattered across API routes. A user cannot read another user's summaries, enforced at the query level.</li>
+        <li><strong>Status-driven UX:</strong> the summary card reflects real job states (queued, processing, succeeded, failed) pulled from the database, not local ephemeral state.</li>
+        <li><strong>Integration and E2E tests</strong> before expanding scope. The pipeline must be proven reliable before adding more complexity.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Phase 3: Expand capabilities</summary>
+      <ul>
+        <li><strong>Multi-format support:</strong> .txt, .md, .docx in addition to PDF.</li>
+        <li><strong>OCR for scanned PDFs:</strong> this comes after monitoring exists because OCR adds both cost and new failure modes that need the observability from Phase 1.</li>
+        <li><strong>Custom summary replacement + regenerate:</strong> users can write their own summary (replacing the AI version) or regenerate a new AI summary. Both are trust mechanisms that give users control. Replacement rate also feeds back into quality measurement.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Phase 4: Production and observability</summary>
+      <ul>
+        <li><strong>Phased rollout via feature flags:</strong> gradually release to increasing user segments based on stability metrics. Feature flags are used for launch and as the rollback mechanism.</li>
+        <li><strong>Vercel for hosting:</strong> zero-config Next.js deployment with preview environments per PR.</li>
+        <li><strong>Dashboards:</strong> per-step latency, cost (tokens), success rate, breakdown by file type and provider.</li>
+        <li><strong>Automated alerts:</strong> spend spikes, error-rate thresholds, queue backlog, timeout surges, with runbooks for each scenario.</li>
+        <li><strong>Optimization based on production data:</strong> tune chunking, prompts, and retry strategies using real telemetry. Reduce cost without quality loss.</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>Phase 5: Future work</summary>
+      <ul>
+        <li><strong>Graph database for document relationships:</strong> once summaries are persisted, they become a foundation for understanding relationships between documents. A graph database (e.g., Neo4j) can store semantic similarity edges between documents based on their summary embeddings.</li>
+        <li><strong>Related document suggestions:</strong> when a user attaches a document to a project, the system suggests other documents with semantically similar content. This turns summaries from a passive feature (read and move on) into an active discovery tool.</li>
+        <li><strong>Embedding pipeline:</strong> summaries are embedded at generation time and stored as vectors. Similarity is computed against the existing corpus, and relationships above a confidence threshold are written as edges in the graph. This runs asynchronously alongside summarization, reusing the same job queue infrastructure from Phase 1.</li>
+      </ul>
+    </details>
+
+    <hr>
+
+    <!-- Architecture -->
+    <h2>Architecture</h2>
+
+    <h3>POC (what exists today)</h3>
+    <pre><code>File Browser UI
+  → Next.js /api/upload (pdf-parse extracts text)
+    → Next.js /api/summarize (OpenAI GPT-4o-mini)
+      → Summary Card (display + feedback widget)
+
+Synchronous. In-memory. No persistence.</code></pre>
+
+    <h3>Production (designed)</h3>
+    <pre><code>File Browser UI
+  → Next.js on Vercel (zero-config deploys, preview environments)
+    → Supabase (Postgres + RLS + Auth: persistence, access control, job queue)
+      → AWS Lambda (serverless async worker: extraction + summarization + retry)
+        → Supabase (results + run telemetry)
+          → Next.js (polling for status updates)
+            → Summary Card (display + feedback widget)
+
+Feature flags. Run telemetry. Monitoring dashboards.</code></pre>
+
+    <p>The POC proves the UX pattern works. The production architecture makes it reliable, secure, and observable at scale. A key shift: summaries move from ephemeral (generated on every request, lost on refresh) to persistent (stored in Supabase, served instantly on subsequent views).</p>
+
+    <hr>
+
+    <!-- Key Technical Decisions -->
+    <h2>Key Technical Decisions</h2>
+    <p><strong>Centralized prompts.</strong> All AI behavior lives in a single file (<code>prompts/summarize.ts</code>). Prompts are product decisions about tone, length, and specificity. Keeping them in one file makes them reviewable, versionable, and independently tunable without code changes.</p>
+    <p><strong>Dual-call pattern.</strong> Short summary and expanded bullets are generated by parallel, independent OpenAI calls via <code>Promise.all</code>. This enables independent prompt tuning for each output format. A single structured-output call would couple them.</p>
+    <p><strong>Error discrimination.</strong> The PDF parser inspects error messages to distinguish password-protected, corrupt, and image-only failures. Each returns a tailored user-facing message with a concrete next step. The user never sees a stack trace.</p>
+    <p><strong>15,000 character truncation.</strong> A pragmatic token budget control for the POC. Production would use smarter chunking strategies informed by run telemetry data (document length distribution, truncation frequency).</p>
+
+    <hr>
+
+    <!-- What I Learned -->
+    <h2>What I Learned</h2>
+    <p><strong>The most consequential part of an AI feature is everything around the API call,</strong> including error handling, retry logic, quality measurement, and user trust. In this POC, the OpenAI integration was straightforward, so I focused on what actually creates the greatest impact: making the feature feel reliable.</p>
+    <p><strong>Prompt engineering is a product concern.</strong> The prompts in this project are decisions about tone ("3rd person active voice"), length ("8 words or fewer"), and what to prioritize ("skip introductions, focus on substance"). These are product decisions, not engineering ones.</p>
+    <p><strong>Defining success criteria before writing code changes what you build.</strong> The feedback widget exists because the measurement framework required it. The manual override feature exists because replacement rate is a proxy metric. Starting with "how will we know this works?" shapes the feature itself.</p>
+
+    <hr>
+
+    <!-- Resources -->
+    <h2>Resources</h2>
+    <p><a href="https://github.com/htcooper/doc-summarizer" target="_blank" rel="noopener">View on GitHub →</a></p>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/nav.js"></script>
+</body>
+</html>

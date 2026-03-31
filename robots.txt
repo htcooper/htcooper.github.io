@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://htcooper.github.io/sitemap.xml
