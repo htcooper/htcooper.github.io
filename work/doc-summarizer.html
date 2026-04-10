@@ -78,7 +78,7 @@
     <ul>
       <li><strong>Upload:</strong> drag-and-drop with client-side validation (PDF only, 50MB max). PDF-only because it's the most common attachment type; multi-format support is an MVP expansion.</li>
       <li><strong>Text extraction:</strong> pdf-parse extracts text with error discrimination. Corrupt files, password-protected PDFs, and image-only PDFs each return a distinct error message with a clear next step for the user. No technical jargon is exposed.</li>
-      <li><strong>Summarization:</strong> two parallel OpenAI calls generate an 8-word headline and 3 bullet points simultaneously. The 8-word limit forces concise, scannable summaries that stay visually compact across different UI contexts. The 3-bullet expansion gives enough detail without overwhelming.</li>
+      <li><strong>Summarization:</strong> two parallel OpenAI calls generate an 8-word headline and 3 bullet points simultaneously. I tested 5, 8, 12, and 15-word limits during development. Five words was too cryptic for users to judge relevance; twelve started feeling like a sentence you had to read carefully. Eight hit the sweet spot: meaningful enough to inform, short enough to scan instantly. The 3-bullet expansion gives enough detail without overwhelming.</li>
       <li><strong>Centralized prompts:</strong> all AI behavior lives in a single file. Prompts are tunable without touching application code. Text is truncated at 15,000 characters as a pragmatic token budget control.</li>
       <li><strong>Feedback collection:</strong> thumbs up/down inline with an optional comment field on negative feedback. Starting the feedback flywheel early is critical for AI features; it's how you build the data to improve prompt quality over time.</li>
       <li><strong>Error handling:</strong> every error returns a human-readable message AND a suggested next step. Rate limits, timeouts, invalid API keys, and corrupt files each have tailored copy. Technical details are logged server-side, never shown to users.</li>
@@ -98,21 +98,42 @@
     <p>These are the success criteria and measurement framework I designed for this feature. The metrics are pre-launch targets; the framework is designed to validate or adjust them with real usage data.</p>
 
     <details>
-      <summary>Primary metric</summary>
-      <p><strong>&gt;70% positive feedback</strong> (thumbs up) on summaries that receive feedback.</p>
-    </details>
-
-    <details>
-      <summary>Engagement check (the metric about the metric)</summary>
-      <p>If fewer than 5% of users give any feedback, the primary metric isn't meaningful yet. Before trusting the quality signal, A/B test the feedback UX: inline prompts, timing, placement. This is also where proxy metrics become essential.</p>
+      <summary>Tiered metrics framework</summary>
+      <p>Metrics are sequenced around what you can learn at each stage. Start with "does it work?", then "is it valuable?", then "how do we improve?"</p>
+      <p><strong>Tier 1: MVP launch (weeks 1-4): reliability</strong></p>
+      <ul>
+        <li><strong>&gt;95% summary generation rate:</strong> technical reliability baseline</li>
+        <li><strong>P95 latency &lt;10s:</strong> user-perceived performance</li>
+        <li><strong>&lt;1% error rate:</strong> system stability</li>
+        <li><strong>&lt;$0.10 cost per summary:</strong> economic sustainability</li>
+      </ul>
+      <p><strong>Tier 2: Post-MVP (months 2-3): value</strong></p>
+      <ul>
+        <li><strong>&gt;70% positive feedback</strong> (thumbs up): direct quality signal</li>
+        <li><strong>&gt;10% feedback rate:</strong> if fewer than 5% of users give any feedback, the quality signal isn't meaningful yet. A/B test the feedback UX before trusting the number.</li>
+        <li><strong>&lt;10% edit rate:</strong> the most important quality proxy. When users replace an AI summary with their own text, that's a direct signal the output isn't meeting expectations.</li>
+        <li><strong>Measurable reduction in files opened per search</strong> (A/B test): efficiency gain</li>
+      </ul>
+      <p><strong>Tier 3: Optimization (month 3+): continuous improvement</strong></p>
+      <ul>
+        <li><strong>Automated quality scores</strong> (LLM-as-judge): scalable measurement of faithfulness, relevance, and conciseness</li>
+        <li><strong>Edit pattern analysis:</strong> what users consistently change reveals actionable prompt improvements</li>
+        <li><strong>Time saved</strong> (user surveys): perceived value and ROI</li>
+      </ul>
     </details>
 
     <details>
       <summary>Proxy metrics (no explicit feedback required)</summary>
       <ul>
-        <li><strong>Manual summary replacement rate.</strong> When users replace an AI summary with their own text, that's a direct quality signal. High replacement rates indicate the AI output isn't meeting user expectations.</li>
+        <li><strong>Manual summary replacement rate.</strong> When users replace an AI summary with their own text, that's a direct quality signal. Thresholds: under 5% is excellent, 5-10% is healthy, 10-15% warrants investigation by file type, and above 20% means users are doing manual work and the feature is failing. Tracking what users change (not just how often) reveals actionable prompt improvements. For example, if users consistently add pricing details the summary missed, the prompt should be updated to extract pricing explicitly.</li>
         <li><strong>Session pattern analysis.</strong> If a user opens an attached file and returns to the app within 10 seconds, the file likely wasn't relevant, which may indicate a misleading summary. If they stay away for 2+ minutes, they're probably reading it, meaning the summary led them to the right content.</li>
       </ul>
+    </details>
+
+    <details>
+      <summary>Metrics that don't work</summary>
+      <p><strong>Quick return rate</strong> (file opened then immediately closed) seems intuitive but is ambiguous. A user closing a file in under 10 seconds could mean three things: they were scanning multiple files (good behavior), the summary was misleading (bad quality), or the summary told them everything they needed (good summary). Without additional context, the metric is uninterpretable.</p>
+      <p>Similarly, "find files faster" only works if you first understand how users discover files (search, browse, or notification). The metric needs to be scoped to a specific discovery pattern before it means anything.</p>
     </details>
 
     <details>
@@ -173,13 +194,15 @@
         <li><strong>Multi-format support:</strong> .txt, .md, .docx in addition to PDF.</li>
         <li><strong>OCR for scanned PDFs:</strong> this comes after monitoring exists because OCR adds both cost and new failure modes that need the observability from Phase 1.</li>
         <li><strong>Custom summary replacement + regenerate:</strong> users can write their own summary (replacing the AI version) or regenerate a new AI summary. Both are trust mechanisms that give users control. Replacement rate also feeds back into quality measurement.</li>
+        <li><strong>Manual and batch summarization:</strong> auto-summarization only covers new uploads. Manual triggers let users summarize existing files on demand, and batch triggers let admins backfill critical content sets. Without this, the feature only works going forward and ignores the existing library.</li>
+        <li><strong>Coverage metric:</strong> files with summaries divided by total files in the system. Tracks adoption over time. Target: above 80% within 6 months through a combination of auto-summarization, manual triggers, and batch backfill.</li>
       </ul>
     </details>
 
     <details>
       <summary>Phase 4: Production and observability</summary>
       <ul>
-        <li><strong>Phased rollout via feature flags:</strong> gradually release to increasing user segments based on stability metrics. Feature flags are used for launch and as the rollback mechanism.</li>
+        <li><strong>Phased rollout via feature flags:</strong> start at 5% of users, expand to 25%, 50%, then 100% based on stability metrics. Rollback triggers: error rate exceeds 5%, P95 latency exceeds 10s, cost per summary exceeds $0.50, or user complaints exceed 10 tickets/day. Any trigger kills the feature instantly via feature flag, no code deploy required.</li>
         <li><strong>Vercel for hosting:</strong> zero-config Next.js deployment with preview environments per PR.</li>
         <li><strong>Dashboards:</strong> per-step latency, cost (tokens), success rate, breakdown by file type and provider.</li>
         <li><strong>Automated alerts:</strong> spend spikes, error-rate thresholds, queue backlog, timeout surges, with runbooks for each scenario.</li>
