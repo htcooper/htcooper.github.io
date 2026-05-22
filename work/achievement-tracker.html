@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="path-depth" content="1">
+  <title>Achievement Tracker | Hollis Cooper — AI + Data PM</title>
+  <meta name="description" content="A self-hosted tool for capturing wins in STAR format, with AI writing assistance for resume and promo prep.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://htcooper.github.io/work/achievement-tracker.html">
+  <meta property="og:title" content="Achievement Tracker | Hollis Cooper">
+  <meta property="og:description" content="A self-hosted tool for capturing wins in STAR format, with AI writing assistance for resume and promo prep.">
+  <meta property="og:url" content="https://htcooper.github.io/work/achievement-tracker.html">
+  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/achievement-tracker/achievement-tracker-ss.png">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Sans+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="case-study">
+  <div class="container">
+
+    <header class="case-study__header">
+      <h1 class="case-study__title">Achievement Tracker</h1>
+      <p class="case-study__subtitle">A self-hosted tool for capturing wins in STAR format, with AI writing assistance for resume and promo prep.</p>
+      <div class="case-study__meta">
+        <span class="tag tag--status tag--complete">Complete</span>
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">OpenAI API</span>
+      </div>
+      <p class="mt-16 text-secondary">
+        <strong>Stack:</strong> Python · FastAPI · SQLite · Vanilla JS · OpenAI API (optional) · Notion API (optional)
+      </p>
+      <p class="mt-8 text-secondary">
+        <a href="https://github.com/htcooper/achievement-tracker" target="_blank" rel="noopener">View on GitHub</a>
+      </p>
+    </header>
+
+    <hr>
+
+    <div class="video-container" style="max-width: 700px;">
+      <img src="../assets/images/work/achievement-tracker/achievement-tracker-ss.png" alt="Achievement Tracker main interface showing entries in STAR format" style="width: 100%; display: block;">
+    </div>
+
+    <hr>
+
+    <h2>Why I Built This</h2>
+    <p>Every performance review, I'd scramble to reconstruct what I'd actually done over the past year. Notes app entries, Slack threads, vague memories. The details that make an achievement worth citing were gone by the time I needed them.</p>
+    <p>I wanted a tool that made capturing wins frictionless on the day they happen, in the STAR format that matters when it's time to update a resume or make the case for a promotion. Building it also gave me a real-world context to dog-food AI writing assistance in a workflow I use every day.</p>
+
+    <hr>
+
+    <h2>The Problem</h2>
+    <p>Performance reviews kept catching me off guard. I'd complete something notable or significant, and think "oh, I'll remember this later" or documenting it would be deprioritized after moving on to the next critical task ... and then the next one ... and then would be forgotten. When it came time to consolidate and communicate these wins, I'd scramble: reviewing notes, Slack messages, emails, anything I could find. I'd just hope for the best.</p>
+
+    <hr>
+
+    <h2>What I Did</h2>
+    <ul>
+      <li>Designed and built a self-hosted web app with a Python/FastAPI backend and SQLite for local-first, private storage</li>
+      <li>Implemented full STAR entry capture (Situation, Task, Action, Result) with a clean, fast interface requiring no build step</li>
+      <li>Integrated OpenAI API for AI writing assistance: suggest tags and titles, or rewrite any field to clean up rough or voice-dictated text</li>
+      <li>Built a related achievements feature that surfaces entries sharing tags, ranked by overlap, with paginated navigation</li>
+      <li>Added search and filter by keyword, tag, date range, and company; monthly grouping with collapsible rows</li>
+      <li>Implemented optional Notion integration to promote achievements as full STAR stories to a Notion database, with two-way sync after edits</li>
+      <li>Shipped CSV export, archive, light/dark mode, and voice input compatibility (works with WhisprFlow and similar dictation tools)</li>
+      <li>Packaged with a one-command launcher and published as an open-source project</li>
+    </ul>
+
+    <hr>
+
+    <h2>The Result</h2>
+    <ul>
+      <li>Daily-use personal tool that replaced scattered notes for tracking professional wins</li>
+      <li>Voice-to-STAR workflow: dictate a rough note, AI rewrites it into a clean STAR entry in seconds</li>
+      <li>Notion integration creates a shareable record for manager conversations and external portfolios</li>
+      <li>Fully local by default, with no database server or cloud dependency required</li>
+    </ul>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/nav.js"></script>
+</body>
+</html>
