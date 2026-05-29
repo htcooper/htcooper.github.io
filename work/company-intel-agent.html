@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="path-depth" content="1">
+  <title>Company Intelligence Agent | Hollis Cooper — AI + Data PM</title>
+  <meta name="description" content="A multi-pass agentic AI pipeline that turns a company name into a 1-page executive intelligence brief in under 2 minutes.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://htcooper.github.io/work/company-intel-agent.html">
+  <meta property="og:title" content="Company Intelligence Agent | Hollis Cooper">
+  <meta property="og:description" content="A multi-pass agentic AI pipeline that turns a company name into a 1-page executive intelligence brief in under 2 minutes.">
+  <meta property="og:url" content="https://htcooper.github.io/work/company-intel-agent.html">
+  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/company-intel-agent/comp-intel-ss.png">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Sans+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="case-study">
+  <div class="container">
+
+    <header class="case-study__header">
+      <h1 class="case-study__title">Company Intelligence Agent</h1>
+      <p class="case-study__subtitle">A multi-pass agentic AI pipeline that turns a company name into a 1-page executive intelligence brief in under 2 minutes.</p>
+      <div class="case-study__meta">
+        <span class="tag tag--status tag--complete">Complete</span>
+        <span class="tag">Python</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Claude API</span>
+      </div>
+      <p class="mt-16 text-secondary">
+        <strong>Stack:</strong> Python · Streamlit · Claude Sonnet 4.6 · Anthropic web search tool · Hugging Face Spaces
+      </p>
+      <p class="mt-8 text-secondary">
+        <a href="https://htcooper-company-intel-agent.hf.space/" target="_blank" rel="noopener">Live demo →</a> &nbsp;·&nbsp;
+        <a href="https://github.com/htcooper/company-intel-agent" target="_blank" rel="noopener">View on GitHub →</a>
+      </p>
+    </header>
+
+    <hr>
+
+    <div class="video-container" style="max-width: 800px;">
+      <img src="../assets/images/work/company-intel-agent/comp-intel-ss.png" alt="Company Intelligence Agent landing page" style="width: 100%; display: block;">
+    </div>
+
+    <hr>
+
+    <h2>Why I Built This</h2>
+    <p>Competitive research is one of those tasks that's high-value but easy to skip — it takes 30–45 minutes to do properly, so it only happens when there's a specific forcing function (a sales call, a board question, a new hire joining the team). Most of the time, you go in underprepared.</p>
+    <p>I'd already built a Claude Code skill called Competitive Intelligence for internal use at Blackthorn — it's a targeted tool for understanding how Blackthorn stacks up against specific competitors. This app is something different: a general-purpose intelligence tool for any public company, built as a standalone Streamlit app so anyone can use it without API access or a development environment.</p>
+    <p>It also gave me a real-world test case for multi-pass agentic pipelines: not a single LLM call, but a sequence of autonomous research steps that cross-reference each other before synthesizing a final output.</p>
+
+    <hr>
+
+    <h2>What It Produces</h2>
+    <p>Every brief has the same four sections, regardless of company:</p>
+    <ul>
+      <li><strong>What they're doing</strong> — concrete recent moves: product launches, acquisitions, partnerships, funding rounds from the last 6 months</li>
+      <li><strong>What they're saying</strong> — public narrative and positioning extracted from blog posts, exec interviews, and press statements</li>
+      <li><strong>What hiring signals suggest</strong> — talent strategy inferred from open roles, growing teams, and required skills</li>
+      <li><strong>Bottom line</strong> — one or two sentences on where the company is headed and what it signals</li>
+    </ul>
+    <p>The fixed structure is intentional. It means every brief is comparable and skimmable, and it forces the model to find signal in each dimension even when a company is quiet publicly.</p>
+
+    <hr>
+
+    <h2>How It Works</h2>
+    <p>The app runs four sequential Anthropic API calls. Each is a separate agentic pass — Claude autonomously decides what to search and how to interpret results, using Anthropic's built-in <code>web_search_20260209</code> tool. No separate search API key required.</p>
+    <ol>
+      <li><strong>Disambiguation</strong> — Claude Haiku resolves the company name to a specific, unambiguous entity before any web search runs. Fast and cheap; prevents the downstream passes from going off on the wrong company.</li>
+      <li><strong>News &amp; announcements</strong> — Claude Sonnet searches for strategic moves from the last 6 months: product launches, M&amp;A, funding, partnerships.</li>
+      <li><strong>Hiring signals</strong> — Claude Sonnet reads job boards to infer priorities and growth areas from open roles and required skills.</li>
+      <li><strong>Content &amp; positioning</strong> — Claude Sonnet finds blog posts, conference talks, and press statements to extract public narrative.</li>
+      <li><strong>Synthesis</strong> — a final pass cross-references all three research outputs and writes the structured brief.</li>
+    </ol>
+
+    <h3>Pipeline</h3>
+    <pre><code>User inputs company name
+        │
+        ├─ Disambiguation (Claude Haiku — fast, no web search)
+        │
+        ├── Pass 1: News & announcements    (Claude Sonnet + web search)
+        ├── Pass 2: Hiring signals           (Claude Sonnet + web search)
+        └── Pass 3: Content & positioning    (Claude Sonnet + web search)
+                │
+                ▼
+        Synthesis: cross-reference all 3 passes → structured brief
+                │
+                ▼
+        Cache result (24hr TTL) → render + offer markdown download</code></pre>
+
+    <p>Results are cached for 24 hours. Searching the same company again is instant. Users can also download the brief as a markdown file.</p>
+
+    <hr>
+
+    <h2>Sample Output</h2>
+
+    <div class="video-container" style="max-width: 800px;">
+      <img src="../assets/images/work/company-intel-agent/meta-brief-ss.png" alt="Sample Company Intelligence Agent brief for Meta" style="width: 100%; display: block;">
+    </div>
+
+    <hr>
+
+    <h2>Security</h2>
+    <p>Because the app takes arbitrary user input and passes it into an agentic pipeline, prompt injection was the primary attack surface. I treated it as a first-class concern from the start:</p>
+    <ul>
+      <li><strong>Input sanitization</strong> — control characters, null bytes, and inputs over 100 characters are rejected before any API call</li>
+      <li><strong>Prompt injection guard</strong> — all research system prompts include an explicit instruction to treat the company name solely as a search subject, not a command</li>
+      <li><strong>HTML escaping</strong> — all model output is escaped before rendering to prevent XSS</li>
+    </ul>
+    <p>An adversarial test suite (<code>tests/test_adversarial.py</code>) verifies these defenses against direct injection, system prompt extraction, indirect injection via poisoned search results, and persona/jailbreak attempts. The suite is designed to run without API keys — no live model calls needed for the static tests.</p>
+
+    <hr>
+
+    <h2>What I Learned</h2>
+    <p><strong>Disambiguation is load-bearing.</strong> The first pass — resolving an ambiguous name like "Apple" or "Stripe" before any research runs — turned out to be the most important reliability investment. Without it, the downstream passes occasionally researched the wrong entity and produced confidently wrong output. A single cheap Haiku call eliminated the problem entirely.</p>
+    <p><strong>Multi-pass beats single-pass for synthesis quality.</strong> A single prompt asking Claude to research news, hiring, and positioning simultaneously produced flatter output than giving each dimension its own pass. Separating the research phases lets the synthesis step work from concrete, independently-verified findings rather than blending three shallow searches into one response.</p>
+    <p><strong>Caching changes the product feel entirely.</strong> Adding a 24-hour cache transformed the app from a tool that "runs a query" into one that "knows about companies." Returning instant results for recently searched companies made it feel significantly more capable than it would appear from the raw latency numbers on cold searches.</p>
+
+    <hr>
+
+    <h2>Resources</h2>
+    <p>
+      <a href="https://htcooper-company-intel-agent.hf.space/" target="_blank" rel="noopener">Live demo on Hugging Face Spaces →</a><br>
+      <a href="https://github.com/htcooper/company-intel-agent" target="_blank" rel="noopener">View on GitHub →</a>
+    </p>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/nav.js"></script>
+</body>
+</html>
