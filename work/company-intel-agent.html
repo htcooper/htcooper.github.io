@@ -36,7 +36,7 @@
         <span class="tag">Claude API</span>
       </div>
       <p class="mt-16 text-secondary">
-        <strong>Stack:</strong> Python · Streamlit · Claude Sonnet 4.6 · Anthropic web search tool · Hugging Face Spaces
+        <strong>Stack:</strong> Python · Streamlit · Claude Sonnet 4.6 / GPT-4o · Anthropic &amp; OpenAI web search · Hugging Face Spaces
       </p>
       <p class="mt-8 text-secondary">
         <a href="https://htcooper-company-intel-agent.hf.space/" target="_blank" rel="noopener">Live demo →</a> &nbsp;·&nbsp;
@@ -62,7 +62,7 @@
     <h2>What It Produces</h2>
     <p>Every brief has the same four sections, regardless of company:</p>
     <ul>
-      <li><strong>What they're doing</strong> — concrete recent moves: product launches, acquisitions, partnerships, funding rounds from the last 6 months</li>
+      <li><strong>What they're doing</strong> — concrete recent moves: product launches, acquisitions, partnerships, funding</li>
       <li><strong>What they're saying</strong> — public narrative and positioning extracted from blog posts, exec interviews, and press statements</li>
       <li><strong>What hiring signals suggest</strong> — talent strategy inferred from open roles, growing teams, and required skills</li>
       <li><strong>Bottom line</strong> — one or two sentences on where the company is headed and what it signals</li>
@@ -72,12 +72,13 @@
     <hr>
 
     <h2>How It Works</h2>
-    <p>The app runs four sequential Anthropic API calls. Each is a separate agentic pass — Claude autonomously decides what to search and how to interpret results, using Anthropic's built-in <code>web_search_20260209</code> tool. No separate search API key required.</p>
+    <p>The app runs four sequential API calls per company. The default mode uses Anthropic's Claude Sonnet 4.6 with its built-in <code>web_search_20260209</code> tool; users can also switch to OpenAI (GPT-4o with <code>web_search_preview</code>). No separate search API key required — web search is bundled with whichever provider is selected.</p>
+    <p>The app ships with a built-in demo key (Anthropic, 3 runs per browser session). Users can bypass the limit by supplying their own Anthropic or OpenAI API key in the topbar.</p>
     <ol>
-      <li><strong>Disambiguation</strong> — Claude Haiku resolves the company name to a specific, unambiguous entity before any web search runs. Fast and cheap; prevents the downstream passes from going off on the wrong company.</li>
-      <li><strong>News &amp; announcements</strong> — Claude Sonnet searches for strategic moves from the last 6 months: product launches, M&amp;A, funding, partnerships.</li>
-      <li><strong>Hiring signals</strong> — Claude Sonnet reads job boards to infer priorities and growth areas from open roles and required skills.</li>
-      <li><strong>Content &amp; positioning</strong> — Claude Sonnet finds blog posts, conference talks, and press statements to extract public narrative.</li>
+      <li><strong>Disambiguation</strong> — a fast, cheap model (Claude Haiku / GPT-4o-mini) resolves the company name to a specific, unambiguous entity before any web search runs. Prevents the downstream passes from going off on the wrong company.</li>
+      <li><strong>News &amp; announcements</strong> — searches for strategic moves from the last 12 months: product launches, M&amp;A, funding, partnerships.</li>
+      <li><strong>Hiring signals</strong> — reads job boards to infer priorities and growth areas from open roles and required skills.</li>
+      <li><strong>Content &amp; positioning</strong> — finds blog posts, conference talks, and press statements to extract public narrative.</li>
       <li><strong>Synthesis</strong> — a final pass cross-references all three research outputs and writes the structured brief.</li>
     </ol>
 
@@ -96,7 +97,7 @@
                 ▼
         Cache result (24hr TTL) → render + offer markdown download</code></pre>
 
-    <p>Results are cached for 24 hours. Searching the same company again is instant. Users can also download the brief as a markdown file.</p>
+    <p>Results are cached for 24 hours. Cache hits display a banner showing the original provider, model, and date, with a "Rerun fresh" link that regenerates using the currently selected provider. Every brief — both in the UI and as a downloadable markdown file — ends with an attribution line showing which provider and model generated it.</p>
 
     <hr>
 
@@ -114,6 +115,7 @@
       <li><strong>Input sanitization</strong> — control characters, null bytes, and inputs over 100 characters are rejected before any API call</li>
       <li><strong>Prompt injection guard</strong> — all research system prompts include an explicit instruction to treat the company name solely as a search subject, not a command</li>
       <li><strong>HTML escaping</strong> — all model output is escaped before rendering to prevent XSS</li>
+      <li><strong>BYOK key handling</strong> — user-supplied API keys live in session state only; they are never logged, persisted, or echoed. Invalid keys raise a provider-aware error and do not consume a session run.</li>
     </ul>
     <p>An adversarial test suite (<code>tests/test_adversarial.py</code>) verifies these defenses against direct injection, system prompt extraction, indirect injection via poisoned search results, and persona/jailbreak attempts. The suite is designed to run without API keys — no live model calls needed for the static tests.</p>
 
