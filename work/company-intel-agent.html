@@ -85,11 +85,11 @@
     <h3>Pipeline</h3>
     <pre><code>User inputs company name
         │
-        ├─ Disambiguation (Claude Haiku — fast, no web search)
+        ├─ Disambiguation (fast model — no web search)
         │
-        ├── Pass 1: News & announcements    (Claude Sonnet + web search)
-        ├── Pass 2: Hiring signals           (Claude Sonnet + web search)
-        └── Pass 3: Content & positioning    (Claude Sonnet + web search)
+        ├── Pass 1: News & announcements    (research model + web search)
+        ├── Pass 2: Hiring signals           (research model + web search)
+        └── Pass 3: Content & positioning    (research model + web search)
                 │
                 ▼
         Synthesis: cross-reference all 3 passes → structured brief
