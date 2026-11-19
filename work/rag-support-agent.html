@@ -11,7 +11,7 @@
   <meta property="og:title" content="RAG Support Agent | Hollis Cooper">
   <meta property="og:description" content="A support agent that answers FastAPI questions from FastAPI's own docs with cited sources, traced in Langfuse and measured by a 39-case eval.">
   <meta property="og:url" content="https://htcooper.github.io/work/rag-support-agent.html">
-  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/rag-support-agent/rag-trace-rewrite-ss.png">
+  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/rag-support-agent/rag-ui-developer-ss.png">
   <meta property="og:type" content="article">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@
         <span class="tag">Claude API</span>
       </div>
       <p class="mt-16 text-secondary">
-        <strong>Stack:</strong> Python · Claude Opus 5.5 / Haiku 5.5 · OpenAI text-embedding-3-small · NumPy · Langfuse
+        <strong>Stack:</strong> Python · Claude Opus 5.5 / Haiku 5.5 · OpenAI text-embedding-3-small · NumPy · Langfuse · FastAPI (web UI)
       </p>
       <p class="mt-8 text-secondary">
         <a href="https://github.com/htcooper/rag-support-agent" target="_blank" rel="noopener">View on GitHub →</a>
@@ -57,7 +57,7 @@
     <hr>
 
     <div class="video-container" style="max-width: 800px;">
-      <img src="../assets/images/work/rag-support-agent/rag-trace-rewrite-ss.png" alt="Langfuse trace of one question: the rewrite_query step turns a user's question about a blocked React app into the docs' terms, CORSMiddleware and allow_origins" style="width: 100%; display: block;">
+      <img src="../assets/images/work/rag-support-agent/rag-ui-developer-ss.png" alt="Developer view of the web UI: the login-form question with the rewrite and strict-grounding toggles, a cited answer, and all 5 retrieved chunks with their scores" style="width: 100%; display: block;">
     </div>
 
     <hr>
@@ -94,6 +94,22 @@
 
     <hr>
 
+    <h2>Web UI</h2>
+    <p>A local web UI for asking questions, served by FastAPI with every question billed to the user's API keys.</p>
+    <p>The default view (meant for non-dev end users) shows the answer and cited sources. When expanded, each source shows the relevant quoted passages and a link to the page.</p>
+
+    <div class="video-container" style="max-width: 800px;">
+      <img src="../assets/images/work/rag-support-agent/rag-ui-answer-ss.png" alt="End-user view of the web UI: a cited answer to the CORS question, with its first source expanded to the quoted passages and a link to the docs page" style="width: 100%; display: block;">
+    </div>
+
+    <p>Adding <code>?dev=1</code> to the URL shows the debugging details: the rewrite and strict-prompt toggles, all 5 retrieved chunks with their scores and whether each was cited, the rewritten query, and the model, tokens, cost, latency, and trace link. The example below is the <code>login-form</code> question, which the eval still fails: all 5 chunks come from the OAuth2 tutorial page and none from the form-data page.</p>
+
+    <div class="video-container" style="max-width: 800px;">
+      <img src="../assets/images/work/rag-support-agent/rag-ui-developer-ss.png" alt="Developer view of the login-form question: all 5 retrieved chunks come from the OAuth2 tutorial page, 3 of them cited" style="width: 100%; display: block;">
+    </div>
+
+    <hr>
+
     <h2>Tracing</h2>
     <p>Each question produces one Langfuse trace, with tokens and cost recorded for every step:</p>
     <pre><code>answer_question            chain
@@ -103,6 +119,10 @@
 └── generate               generation   tokens, cost, stop reason, citations</code></pre>
     <p>Eval runs attach six scores to each trace (<code>pass</code>, <code>hit_at_5</code>, <code>mrr</code>, <code>cites_expected</code>, <code>supported</code>, and <code>answers</code>), so each score sits next to the steps that produced it.</p>
     <p>Only the project's own spans are exported. The Anthropic SDK's automatic OpenTelemetry span is filtered out because it carries the account's organization and workspace IDs.</p>
+
+    <div class="video-container" style="max-width: 800px;">
+      <img src="../assets/images/work/rag-support-agent/rag-trace-rewrite-ss.png" alt="Langfuse trace of one question: the rewrite_query step turns a user's question about a blocked React app into the docs' terms, CORSMiddleware and allow_origins" style="width: 100%; display: block;">
+    </div>
 
     <div class="video-container" style="max-width: 800px;">
       <img src="../assets/images/work/rag-support-agent/rag-trace-generate-ss.png" alt="Langfuse generate step: Claude Opus 5.5 answers the CORS question with citations and a CORSMiddleware code example, in 6.22 seconds for $0.039" style="width: 100%; display: block;">
