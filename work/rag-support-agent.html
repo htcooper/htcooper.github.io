@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="path-depth" content="1">
+  <title>RAG Support Agent | Hollis Cooper — AI + Data PM</title>
+  <meta name="description" content="A support agent that answers FastAPI questions from FastAPI's own docs with cited sources, traced in Langfuse and measured by a 39-case eval.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="canonical" href="https://htcooper.github.io/work/rag-support-agent.html">
+  <meta property="og:title" content="RAG Support Agent | Hollis Cooper">
+  <meta property="og:description" content="A support agent that answers FastAPI questions from FastAPI's own docs with cited sources, traced in Langfuse and measured by a 39-case eval.">
+  <meta property="og:url" content="https://htcooper.github.io/work/rag-support-agent.html">
+  <meta property="og:image" content="https://htcooper.github.io/assets/images/work/rag-support-agent/rag-trace-rewrite-ss.png">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,600;1,400;1,600&family=Fira+Sans+Condensed:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-46EGGZ07WC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-46EGGZ07WC');
+</script>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main class="case-study">
+  <div class="container">
+
+    <header class="case-study__header">
+      <h1 class="case-study__title">RAG Support Agent</h1>
+      <p class="case-study__subtitle">A support agent that answers FastAPI questions from FastAPI's own docs with cited sources, traced in Langfuse and measured by a 39-case eval.</p>
+      <div class="case-study__meta">
+        <span class="tag tag--status tag--complete">Complete</span>
+        <span class="tag">Python</span>
+        <span class="tag">RAG</span>
+        <span class="tag">LLM Evals</span>
+        <span class="tag">Langfuse</span>
+        <span class="tag">Claude API</span>
+      </div>
+      <p class="mt-16 text-secondary">
+        <strong>Stack:</strong> Python · Claude Opus 5.5 / Haiku 5.5 · OpenAI text-embedding-3-small · NumPy · Langfuse
+      </p>
+      <p class="mt-8 text-secondary">
+        <a href="https://github.com/htcooper/rag-support-agent" target="_blank" rel="noopener">View on GitHub →</a>
+      </p>
+    </header>
+
+    <hr>
+
+    <div class="video-container" style="max-width: 800px;">
+      <img src="../assets/images/work/rag-support-agent/rag-trace-rewrite-ss.png" alt="Langfuse trace of one question: the rewrite_query step turns a user's question about a blocked React app into the docs' terms, CORSMiddleware and allow_origins" style="width: 100%; display: block;">
+    </div>
+
+    <hr>
+
+    <h2>Why I Built This</h2>
+    <p>I built this project to learn three parts of shipping an LLM feature by doing them end to end: retrieval-augmented generation (RAG), tracing, and evals. I created a support agent because it's a standard use case that would allow me to work through all three. When the user asks a question, it has to interpret user intent, find the right page, answer only from the given docs, and provide citations for each claim. I can then examine the steps it took and the quality of its answers and make measurable changes to improve performance.</p>
+    <p>The corpus is the FastAPI documentation (release 0.162.0): 999 chunks of technical writing and code examples.</p>
+
+    <hr>
+
+    <h2>How It Works</h2>
+    <ol>
+      <li><strong>Rewrite</strong> — Claude Haiku 5.5 restates the question in the documentation's vocabulary. "My React app gets blocked" becomes "CORSMiddleware allow_origins…".</li>
+      <li><strong>Retrieve</strong> — the question plus the rewrite is embedded with OpenAI <code>text-embedding-3-small</code> and matched against 999 doc chunks by cosine similarity in NumPy. The top 5 come back.</li>
+      <li><strong>Generate</strong> — Claude Opus 5.5 receives the original question and the top 5 chunks as document blocks with citations enabled. It answers only from those documents, or says the docs don't cover the question.</li>
+      <li><strong>Check</strong> — every citation must point to a retrieved chunk and quote text that appears in it. Links in the answer are filtered against a domain allowlist.</li>
+    </ol>
+
+    <h3>Pipeline</h3>
+    <pre><code>User question
+    │
+    ├─ Rewrite    Claude Haiku 5.5 → query in the docs' terms
+    │
+    ├─ Embed      question + rewrite → text-embedding-3-small
+    │
+    ├─ Retrieve   cosine search over 999 chunks → top 5
+    │
+    └─ Generate   Claude Opus 5.5, chunks as document blocks, citations on
+            │
+            ▼
+    Validate citations + filter links → answer with cited doc pages</code></pre>
+
+    <p>The search uses NumPy rather than a vector database. 999 chunks fit in memory, and comparing every query against every chunk guarantees the true top 5. A vector database would make sense at hundreds of thousands of chunks or with frequent content updates.</p>
+
+    <hr>
+
+    <h2>Tracing</h2>
+    <p>Each question produces one Langfuse trace, with tokens and cost recorded for every step:</p>
+    <pre><code>answer_question            chain
+├── retrieve               retriever
+│   ├── rewrite_query      generation   tokens, cost, rewrite text
+│   └── embed_query        embedding    tokens, cost
+└── generate               generation   tokens, cost, stop reason, citations</code></pre>
+    <p>Eval runs attach six scores to each trace (<code>pass</code>, <code>hit_at_5</code>, <code>mrr</code>, <code>cites_expected</code>, <code>supported</code>, and <code>answers</code>), so each score sits next to the steps that produced it.</p>
+    <p>Only the project's own spans are exported. The Anthropic SDK's automatic OpenTelemetry span is filtered out because it carries the account's organization and workspace IDs.</p>
+
+    <div class="video-container" style="max-width: 800px;">
+      <img src="../assets/images/work/rag-support-agent/rag-trace-generate-ss.png" alt="Langfuse generate step: Claude Opus 5.5 answers the CORS question with citations and a CORSMiddleware code example, in 6.22 seconds for $0.039" style="width: 100%; display: block;">
+    </div>
+
+    <hr>
+
+    <h2>Evals</h2>
+    <p>The eval has 39 cases, each graded automatically:</p>
+    <ul>
+      <li><strong>32 should-answer questions</strong> — 22 dev and 10 held-out. The held-out set was written before any fix and never used to design one.</li>
+      <li><strong>5 off-topic questions</strong> the agent should decline.</li>
+      <li><strong>2 prompt-injection cases</strong> with a planted malicious chunk ranked first.</li>
+    </ul>
+    <p>A should-answer case passes when an expected page is retrieved and cited, and a Claude Sonnet 5.5 judge finds that every claim is supported by the retrieved documents and that the answer addresses the question. Details from the model's own knowledge count as unsupported, even when correct. The judge sees the same document blocks the agent saw, and a regression test enforces it.</p>
+    <p>Every variant ran twice per case, with a prediction written and committed before each run. The runner refuses to run if any eval or grading file changed since it was last approved.</p>
+
+    <h3>Results</h3>
+    <p>Two changes raised the pass rate from 74% to 95% (+21 points, 95% CI +9 to +32), for $0.0035 more and 2.3 seconds longer per answer.</p>
+    <ul>
+      <li><strong>v1: query rewriting</strong> — lifted retrieval Hit@5 from 75% to 95% (+20 points, CI +6 to +34).</li>
+      <li><strong>v2: a stricter answer prompt</strong> — lifted "every claim supported" from 86% to 98% (+12.5 points, CI +3 to +22). Its guardrails, set before the run, held: "answers the question" had to stay at 95% or higher, and no should-answer question could be declined.</li>
+    </ul>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Cases</th><th>Baseline</th><th>v1: rewriting</th><th>v2: + strict prompt</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>All 39</td><td>74%</td><td>87%</td><td>95%</td></tr>
+          <tr><td>Should answer, dev (22)</td><td>68%</td><td>89%</td><td>98%</td></tr>
+          <tr><td>Should answer, held-out (10)</td><td>70%</td><td>75%</td><td>85%</td></tr>
+          <tr><td>Should decline (5)</td><td>100%</td><td>100%</td><td>100%</td></tr>
+          <tr><td>Prompt injection (2)</td><td>100%</td><td>100%</td><td>100%</td></tr>
+          <tr><td>Retrieval Hit@5 (32)</td><td>75%</td><td>95%</td><td>95%</td></tr>
+          <tr><td>Every claim supported (32)</td><td>78%</td><td>86%</td><td>98%</td></tr>
+          <tr><td>Cost per answer</td><td>$0.0331</td><td>$0.0345</td><td>$0.0366</td></tr>
+          <tr><td>Median latency</td><td>5.9 s</td><td>6.8 s</td><td>8.2 s</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The held-out gain (70% to 85%) has an interval of −6 to +36 points. With 10 questions it is too wide to confirm on its own.</p>
+
+    <hr>
+
+    <h2>Security</h2>
+    <p>The FastAPI docs are public, untrusted input that ends up in Claude's context, so ingest treats them as data to parse, never as code or instructions:</p>
+    <ul>
+      <li><strong>Pinned source</strong> — the archive is downloaded over HTTPS from a pinned commit, and its SHA-256 must match a lock file.</li>
+      <li><strong>Safe extraction</strong> — a path allowlist, size and file-count caps, and strict UTF-8 decoding. Any failure stops ingest.</li>
+      <li><strong>Sanitizing</strong> — invisible, bidi, and Unicode tag characters are stripped, along with HTML comments and tags. Links outside an allowlist become plain text.</li>
+      <li><strong>Injection screening</strong> — each chunk is checked for instruction-like text, and matches are quarantined out of the index for manual review.</li>
+      <li><strong>Runtime</strong> — retrieved text reaches Claude only as document blocks, never in the system prompt. The agent has no tools, citations are validated, and output links are filtered.</li>
+    </ul>
+    <p>In both prompt-injection cases, across every run, the agent ignored the planted chunk and nothing from it reached the answer.</p>
+
+    <hr>
+
+    <h2>What I Learned</h2>
+    <p><strong>Measure retrieval on its own first.</strong> 8 of the baseline's 11 failing cases were retrieval misses: users asked in their own words, and the docs used feature names. Retrieval needs no answers or judge, so checking the rewrite step alone cost about $0.0015. It fixed 12 queries and broke none before the full answer eval ran.</p>
+    <p><strong>Read the failures to understand the score.</strong> The first v1 run marked a correct answer unsupported for linking a page the judge said appeared in no document. The URL was there; the judge's copy of the documents was missing the source line the agent's copy had, because separate code built each one. I rebuilt the judge's input from the agent's blocks, added a regression test, and re-ran both variants from scratch.</p>
+    <p><strong>Fix failures systematically.</strong> After fixing retrieval, I noted that 6 of 8 imperfect cases from v1 added detail the retrieved excerpts don't state (most likely from the LLM's internal knowledge). I addressed this by refining the v2 prompt, and "every claim supported" went from 86% to 98% with the guardrails intact.</p>
+
+    <hr>
+
+    <h2>Resources</h2>
+    <p>
+      <a href="https://github.com/htcooper/rag-support-agent" target="_blank" rel="noopener">View on GitHub →</a><br>
+      <a href="https://github.com/htcooper/rag-support-agent/blob/main/docs/case-study.md" target="_blank" rel="noopener">Full case study: baseline, v1, and v2 →</a><br>
+      <a href="https://github.com/htcooper/rag-support-agent/blob/main/evals/cases.md" target="_blank" rel="noopener">The 39 eval cases →</a>
+    </p>
+
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="../assets/js/nav.js"></script>
+</body>
+</html>

@@ -612,6 +612,37 @@ li {
   margin-bottom: 1rem;
 }
 
+/* Tables scroll inside their wrapper on narrow screens */
+.table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+}
+
+.case-study table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.case-study th,
+.case-study td {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.case-study th {
+  background-color: var(--bg-tertiary);
+  font-weight: 600;
+}
+
+/* Numeric columns: everything after the row label */
+.case-study th:not(:first-child),
+.case-study td:not(:first-child) {
+  text-align: right;
+}
+
 /* --- Details/Summary (collapsible sections) --- */
 details {
   border: 1px solid var(--border);
